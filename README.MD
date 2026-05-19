@@ -1,7 +1,7 @@
 <div align="center">
   <img 
     src="./src/assets/img/recall-banner.png" 
-    width="90%" 
+    width="100%" 
     alt="Recall Banner"
   />
 
