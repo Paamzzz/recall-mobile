@@ -1,13 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>splash</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="container">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">splash</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- VIDEO BACKGROUND -->
+  <video
+    autoplay
+    muted
+    loop
+    playsinline
+    webkit-playsinline
+    preload="auto"
+    class="video-bg"
+  >
+    <source src="assets/video/gradient-mesh.mp4" type="video/mp4">
+  </video>
+
+  <!-- CONTEÚDO -->
+  <div class="content">
+
+    <div class="top">
+      <div class="logo">
+        <img src="assets/img/logoApp.png" alt="logo">
+      </div>
+
+      <div class="text">
+        <h1>Recall</h1>
+        <p>Recupere, revise e evolua.</p>
+      </div>
+    </div>
+
+    <div class="bottom">
+      <ion-button expand="block" class="btn-primary" routerLink="/cadastro">
+        Cadastre-se
+      </ion-button>
+
+      <ion-button expand="block" fill="outline" class="btn-secondary" routerLink="/login">
+        Login
+      </ion-button>
+    </div>
+
+  </div>
+
 </ion-content>

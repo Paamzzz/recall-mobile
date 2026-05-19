@@ -1,27 +1,450 @@
-#container {
-  text-align: center;
+:host {
+  --bg: #f4f4f8;
+  --text: #232323;
+  --muted: #6f6f6f;
+  --primary: #6b6cff;
+}
+
+.home-content {
+  --background: var(--bg);
+
+  &::part(scroll) {
+    padding: 20px 16px 120px;
+  }
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.greeting {
+  margin: 0;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  font-weight: 600;
+  color: #606060;
+}
+
+.header h1 {
+  margin: 2px 0 0;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  line-height: 1.1;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.avatar {
+  width: clamp(42px, 12vw, 54px);
+  height: clamp(42px, 12vw, 54px);
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #8bb3ff 0%,
+    #8bb3ff 50%,
+    #f6b23d 50%,
+    #f6b23d 100%
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon {
+    font-size: clamp(18px, 5vw, 24px);
+    color: #111;
+  }
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+  margin-top: 34px;
+}
+
+.section-title {
+  margin: 0 0 12px;
+
+  font-size: 0.75rem;
+  font-weight: 800;
+
+  color: #555;
+
+  letter-spacing: 0.4px;
+}
+
+/* =========================
+   VIDEO CARD
+========================= */
+
+.video-card {
+  position: relative;
+  overflow: hidden;
+
+  width: 100%;
+  min-height: 190px;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 10px 25px rgba(26, 19, 91, 0.18),
+    0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+.card-video {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(116, 97, 255, 0.15) 0%,
+      rgba(13, 8, 82, 0.95) 80%
+    );
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 18px;
+
+  color: white;
+}
+
+.small-title {
+  margin: 0;
+
+  font-size: 0.68rem;
+  font-weight: 700;
+
+  opacity: 0.85;
+}
+
+.card-content h2 {
+  margin: 8px 0 6px;
+
+  font-size: clamp(1.1rem, 4vw, 1.6rem);
+  font-weight: 800;
+}
+
+.subtitle {
+  margin: 0;
+
+  font-size: 0.72rem;
+
+  opacity: 0.9;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  margin-top: 14px;
+}
+
+.tags span {
+  padding: 4px 10px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(255,255,255,0.25);
+
+  background: rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(4px);
+
+  font-size: 0.62rem;
+}
+
+.progress-area {
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.progress-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 6px;
+
+  font-size: 0.6rem;
+
+  opacity: 0.85;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 3px;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.18);
+}
+
+.progress {
+  width: 12%;
+  height: 100%;
+
+  border-radius: 999px;
+
+  background: white;
+}
+
+/* =========================
+   TIP CARD
+========================= */
+
+.tip-card {
+  position: relative;
+
+  display: flex;
+  gap: 14px;
+
+  padding: 16px;
+
+  border-radius: 16px;
+
+  background: #fff;
+
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.03),
+    0 8px 20px rgba(0,0,0,0.04);
+}
+
+.tip-card::before {
+  content: '';
 
   position: absolute;
+
   left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 14px;
+  bottom: 14px;
+
+  width: 3px;
+
+  border-radius: 999px;
+
+  background: #ff9800;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.tip-icon {
+  width: 32px;
+  height: 32px;
+
+  border-radius: 10px;
+
+  background: #fff3df;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  font-size: 1rem;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
+.tip-content {
+  width: 100%;
+}
 
-  color: #8c8c8c;
+.tip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
+  gap: 10px;
+}
+
+.tip-header h3 {
   margin: 0;
+
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  font-weight: 700;
+
+  color: #2a2a2a;
 }
 
-#container a {
-  text-decoration: none;
+.tip-header ion-icon {
+  font-size: 1rem;
+  color: #bdbdbd;
+  --color: #bdbdbd;
+}
+
+.tip-content p {
+  margin: 10px 0 0;
+
+  font-size: clamp(0.78rem, 2.5vw, 0.95rem);
+  line-height: 1.45;
+
+  color: #555;
+}
+
+/* =========================
+   PROGRESS CARD
+========================= */
+
+.progress-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 22px 20px;
+
+  border-radius: 18px;
+
+  background: #fff;
+
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.03),
+    0 8px 20px rgba(0,0,0,0.04);
+}
+
+.left {
+  width: 42%;
+}
+
+.left p {
+  margin: 0;
+
+  font-size: 0.9rem;
+  color: #555;
+
+  line-height: 1.3;
+}
+
+.left h2 {
+  margin: 10px 0 6px;
+
+  font-size: clamp(3rem, 10vw, 4rem);
+  line-height: 1;
+
+  font-weight: 800;
+
+  color: #6b6cff;
+}
+
+.left span {
+  font-size: 0.95rem;
+  line-height: 1.3;
+
+  color: #555;
+}
+
+/* =========================
+   PACMAN CHART
+========================= */
+
+.circle-chart {
+  width: 125px;
+  height: 125px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle {
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  background:
+    conic-gradient(
+      #4338ca 0deg 290deg,
+      transparent 290deg 360deg
+    );
+
+  transform: rotate(0deg);
+}
+
+/* =========================
+   TAB BAR
+========================= */
+
+ion-footer {
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
+}
+
+ion-tab-bar {
+  --background: #ffffff;
+
+  height: 72px;
+
+  border: none;
+}
+
+ion-tab-button {
+  --color: #777;
+  --color-selected: #6b6cff;
+
+  font-size: 0.7rem;
+}
+
+ion-tab-button.tab-selected {
+  color: #6b6cff;
+}
+
+ion-tab-button.tab-selected ion-icon,
+ion-tab-button.tab-selected ion-label {
+  color: #6b6cff;
+}
+
+ion-tab-button ion-icon {
+  font-size: 1.3rem;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (min-width: 768px) {
+
+  .home-content::part(scroll) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .video-card {
+    min-height: 230px;
+  }
+
+  .card-content {
+    padding: 24px;
+  }
+
+  .tip-card,
+  .progress-card {
+    border-radius: 22px;
+  }
 }

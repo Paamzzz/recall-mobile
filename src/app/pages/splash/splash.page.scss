@@ -1,0 +1,163 @@
+/* IMPORTA A FONTE */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+.container {
+  --background: transparent;
+
+  position: relative;
+  overflow: hidden;
+
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* VIDEO FUNDO */
+.video-bg {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+
+  width: 100vw;
+  height: 100vh;
+
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+
+  z-index: -1;
+}
+
+/* CONTEÚDO */
+.content {
+  position: relative;
+  z-index: 2;
+
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 70px 36px 45px;
+
+  color: white;
+}
+
+/* TOPO */
+.top {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* TOPO */
+.top {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 90px; /* empurra tudo mais para baixo */
+}
+
+/* LOGO */
+.logo {
+  width: 125px; /* aumentada */
+  margin-bottom: 0px;
+}
+
+.logo img {
+  width: 100%;
+  object-fit: contain;
+}
+
+/* TEXTO */
+.text {
+  text-align: center;
+}
+
+h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin: 0;
+
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+p {
+  margin-top: 10px;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  color: #f3f3f3b8;
+
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* BOTÕES */
+.bottom {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* BOTÃO PRINCIPAL */
+.btn-primary {
+  --background: #f39200;
+  --background-hover: #f39200;
+  --background-activated: #f39200;
+  --color: #ffffff;
+  --border-radius: 999px;
+
+  width: 85%;
+
+  height: 46px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  margin-bottom: 14px;
+
+  text-transform: none;
+
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* BOTÃO LOGIN */
+.btn-secondary {
+  --border-color: rgba(255, 255, 255, 0.9);
+  --color: #ffffff;
+  --border-radius: 999px;
+
+  width: 85%;
+
+  height: 46px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-transform: none;
+
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* RESPONSIVO */
+@media (max-width: 480px) {
+  .content {
+    padding: 60px 24px 36px;
+  }
+
+  h1 {
+    font-size: 36px;
+  }
+
+  p {
+    font-size: 13px;
+  }
+}

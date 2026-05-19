@@ -1,17 +1,91 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>cadastro</ion-title>
-  </ion-toolbar>
-</ion-header>
+<!-- cadastro.page.html -->
+<ion-content [fullscreen]="true" class="cadastro-content">
+  <div class="container">
 
-<ion-content class="ion-padding">
+    <!-- Logo -->
+    <div class="logo-area">
+      <img src="assets/img/logoApp2.png" alt="Recall Logo" class="logo" />
+      <h1>Recall</h1>
+    </div>
 
-  <ion-button expand="block" routerLink="/home">
-    Cadastrar (fake)
-  </ion-button>
+    <!-- Título -->
+    <div class="titulo-area">
+      <h2>Crie uma conta</h2>
+      <p>
+        Junte-se a nós para organizar seus estudos,
+        praticar com flashcards e acelerar sua evolução
+        na tecnologia.
+      </p>
+    </div>
 
-  <ion-button expand="block" routerLink="/login">
-    Já tenho conta
-  </ion-button>
+    <!-- Form -->
+    <form>
 
+      <div class="input-group">
+        <label>Primeiro nome</label>
+        <ion-input fill="outline"></ion-input>
+      </div>
+
+      <div class="input-group">
+        <label>E-mail</label>
+        <ion-input type="email" fill="outline"></ion-input>
+      </div>
+
+      <div class="input-group">
+        <label>Senha</label>
+
+        <div class="senha-box">
+          <ion-input
+            [type]="mostrarSenha ? 'text' : 'password'"
+            fill="outline">
+          </ion-input>
+
+          <ion-icon
+            [name]="mostrarSenha ? 'eye-off-outline' : 'eye-outline'"
+            (click)="toggleSenha()">
+          </ion-icon>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Repetir senha</label>
+
+        <div class="senha-box">
+          <ion-input
+            [type]="mostrarRepetirSenha ? 'text' : 'password'"
+            fill="outline">
+          </ion-input>
+
+          <ion-icon
+            [name]="mostrarRepetirSenha ? 'eye-off-outline' : 'eye-outline'"
+            (click)="toggleRepetirSenha()">
+          </ion-icon>
+        </div>
+      </div>
+
+      <!-- Botão -->
+      <ion-button expand="block" class="btn-cadastro" (click)="confirmarCadastro()">
+        Confirmar cadastro
+      </ion-button>
+
+      <!-- OU -->
+      <div class="ou">OU</div>
+
+      <!-- Google -->
+      <button type="button" class="google-btn"  (click)="loginComGoogle()">
+        <img
+          src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+          alt="Google">
+        Cadastrar com Google
+      </button>
+
+      <!-- Login -->
+      <p class="login-text">
+        Quer fazer login?
+        <a routerLink="/login">Clique aqui</a>
+      </p>
+
+    </form>
+
+  </div>
 </ion-content>

@@ -1,21 +1,130 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="home-content">
 
-<ion-content class="ion-padding ion-text-center">
-  <h2>Bem-vindo</h2>
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <p class="greeting">Bom dia 👋</p>
+      <h1>Lorem Ipsum</h1>
+    </div>
+
+    <div class="avatar">
+      <ion-icon name="happy"></ion-icon>
+    </div>
+  </div>
+
+  <!-- SUGESTÃO -->
+  <div class="section">
+    <p class="section-title">SUGESTÃO DE HOJE</p>
+
+    <div class="video-card">
+
+      <!-- VIDEO FUNDO -->
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="card-video"
+      >
+        <source src="assets/video/bg-card.mp4" type="video/mp4">
+      </video>
+
+      <!-- OVERLAY -->
+      <div class="overlay"></div>
+
+      <!-- CONTEÚDO -->
+      <div class="card-content">
+        <p class="small-title">DECK RECOMENDADO</p>
+
+        <h2>Entrevista Frontend</h2>
+
+        <p class="subtitle">
+          Frontend Developer • React & TypeScript
+        </p>
+
+        <div class="tags">
+          <span>15 cards</span>
+          <span>Hoje</span>
+          <span>Técnica</span>
+        </div>
+
+        <div class="progress-area">
+          <div class="progress-top">
+            <span>Progresso</span>
+            <span>0/5</span>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DICA -->
+  <div class="section">
+    <p class="section-title">DICA DO DIA</p>
+
+    <div class="tip-card">
+
+      <div class="tip-icon">
+        💡
+      </div>
+
+      <div class="tip-content">
+        <div class="tip-header">
+          <h3>Dica para entrevistas</h3>
+          <ion-icon name="sparkles"></ion-icon>
+        </div>
+
+        <p>
+          Ao explicar suas decisões técnicas, utilize o método STAR:
+          detalhe a Situação, a Tarefa, a Ação e o Resultado.
+          Entrevistadores valorizam muito essa clareza estrutural para
+          entender seu raciocínio.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PROGRESSO -->
+  <div class="section">
+    <p class="section-title">PROGRESSO DA SEMANA</p>
+
+    <div class="progress-card">
+
+      <div class="left">
+        <p>Você alcançou...</p>
+
+        <h2>84%</h2>
+
+        <span>de acertos nesta semana.</span>
+      </div>
+
+      <div class="circle-chart">
+        <div class="circle"></div>
+      </div>
+
+    </div>
+  </div>
+
 </ion-content>
 
-<ion-content class="ion-padding">
-  <ion-button  expand="block" (click)="logout()">
-     teste
-</ion-button>
+<!-- TAB BAR -->
+<ion-footer>
+  <ion-tab-bar slot="bottom">
 
-  <ion-button expand="block" routerLink="/cadastro">
-    Ir para Cadastro
-  </ion-button>
-</ion-content>
+    <ion-tab-button tab="home" selected="true">
+      <ion-icon name="home-outline"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="biblioteca">
+      <ion-icon name="library-outline"></ion-icon>
+      <ion-label>Biblioteca</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-footer>

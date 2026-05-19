@@ -1,23 +1,32 @@
-import { Component, inject } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
-import { RouterLink, Router } from '@angular/router'; // Router: serviço typescript        RouterLink: HTML redireciona
-import { AuthService } from '../../services/auth.service';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+
+import { addIcons } from 'ionicons';
+
+import {
+  homeOutline,
+  libraryOutline,
+  sparkles,
+  happy
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  imports: [IonButton, IonHeader, IonToolbar, IonTitle, IonContent,  RouterLink],
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
+  standalone: true,
+  imports: [IonicModule, CommonModule],
 })
-
 export class HomePage {
-  //! Estou tendo que colocar esta lógica aqui pois o componente de logout nao foi feito
-  //! ao ser concluído irei mover esta lógica para lá
-  private authService = inject(AuthService); // estamos dizendo que estes componentes tem acesso ao AuthService
-  private router = inject(Router);
 
-  async logout() { // enquanto o serviço logout executa...
-     await this.authService.sair(); // espera ESSE serviço executar X funçao (sair())
-     this.router.navigate(['/splash']);
+  constructor() {
+    addIcons({
+      homeOutline,
+      libraryOutline,
+      sparkles,
+      happy
+    });
   }
+
 }

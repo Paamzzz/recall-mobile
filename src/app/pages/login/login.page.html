@@ -1,17 +1,81 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="login-content">
+  <div class="container">
 
-<ion-content class="ion-padding">
+    <!-- Logo -->
+    <div class="logo-area">
+      <img src="assets/img/logoApp2.png" alt="Recall Logo" class="logo" />
+      <h1>Recall</h1>
+    </div>
 
-  <ion-button expand="block" routerLink="/home">
-    Entrar (fake)
-  </ion-button>
+    <!-- Título -->
+    <div class="titulo-area">
+      <h2>Bem-vindo de volta</h2>
+      <p>
+        Acesse sua conta para continuar seus ritmos
+        de hoje e manter sua meta de estudos em dia.
+      </p>
+    </div>
 
-  <ion-button expand="block" routerLink="/cadastro">
-    Ir para Cadastro
-  </ion-button>
+    <!-- Form -->
+    <form>
 
+      <!-- Email -->
+      <div class="input-group">
+        <label>E-mail</label>
+        <ion-input
+          type="email"
+          fill="outline">
+        </ion-input>
+      </div>
+
+      <!-- Senha -->
+      <div class="input-group">
+        <label>Senha</label>
+
+        <div class="senha-box">
+          <ion-input
+            [type]="mostrarSenha ? 'text' : 'password'"
+            fill="outline">
+          </ion-input>
+
+          <ion-icon
+            [name]="mostrarSenha ? 'eye-off-outline' : 'eye-outline'"
+            (click)="toggleSenha()">
+          </ion-icon>
+        </div>
+      </div>
+
+      <!-- Botão -->
+      <ion-button
+        expand="block"
+        class="btn-login"
+        (click)="entrar()">
+        Entrar
+      </ion-button>
+
+      <!-- OU -->
+      <div class="ou">OU</div>
+
+      <!-- Google -->
+      <button
+        type="button"
+        class="google-btn"
+        (click)="loginComGoogle()">
+
+        <img
+          src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
+          alt="Google">
+
+        Cadastrar com Google
+      </button>
+
+      <!-- Cadastro -->
+      <p class="cadastro-text">
+        Quer fazer cadastro?
+        <a routerLink="/cadastro">Clique aqui</a>
+      </p>
+
+    </form>
+
+  </div>
 </ion-content>

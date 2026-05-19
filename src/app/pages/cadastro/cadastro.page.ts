@@ -1,21 +1,65 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/angular/standalone';
-import { RouterModule } from '@angular/router';
+
+import {
+  IonContent,
+  IonButton,
+  IonInput,
+  IonIcon
+} from '@ionic/angular/standalone';
+
+import { RouterModule, Router } from '@angular/router';
+
+import { addIcons } from 'ionicons';
+import { eyeOutline, eyeOffOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.page.html',
   styleUrls: ['./cadastro.page.scss'],
   standalone: true,
-  imports: [IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, RouterModule]
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    IonContent,
+    IonButton,
+    IonInput,
+    IonIcon
+  ]
 })
-export class CadastroPage implements OnInit {
+export class CadastroPage {
 
-  constructor() { }
+  mostrarSenha = false;
+  mostrarRepetirSenha = false;
 
-  ngOnInit() {
+  constructor(private router: Router) {
+
+    addIcons({
+      'eye-outline': eyeOutline,
+      'eye-off-outline': eyeOffOutline
+    });
+
+  }
+
+  toggleSenha() {
+    this.mostrarSenha = !this.mostrarSenha;
+  }
+
+  toggleRepetirSenha() {
+    this.mostrarRepetirSenha = !this.mostrarRepetirSenha;
+  }
+
+  confirmarCadastro() {
+
+    // futuramente aqui vai salvar no banco
+
+    this.router.navigate(['/login']);
+  }
+
+  loginComGoogle() {
+    alert('Login com Google');
   }
 
 }
