@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { Pollinations } from './pollinations.service';
+import { Groq } from './groq.service';
 
-describe('Pollinations', () => {
-  let service: Pollinations;
+describe('Groq', () => {
+  let service: Groq;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(Pollinations);
+    service = TestBed.inject(Groq);
   });
 
   it('should be created', () => {
