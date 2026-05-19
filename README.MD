@@ -85,13 +85,12 @@ ionic capacitor run android
 
 ## 👩‍💻 Time
 
-<div align="center">
   | Desenvolvedor | Contato |
   | :--- | :--- |
   | **Pamela Amancio Goulart** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/Paamzzz) |
   | **João Pedro Rangel** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/7JPRBM7) |
   | **Joyce do Vale Silva** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/J01C3) |
-</div>
+
 
 <br/>
 
