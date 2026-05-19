@@ -5,18 +5,15 @@
     alt="Recall Banner"
   />
 
-  <p>
-    <em>Estude para entrevistas de TI do jeito que o seu cérebro aprende.</em>
-  </p>
-
   <br/>
 
   <img src="https://img.shields.io/badge/Ionic-3880FF?style=for-the-badge&logo=ionic&logoColor=white" alt="Ionic" />
   <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
   <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
   <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
-  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma" />
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Postman-ef5b25?style=for-the-badge&logo=postman&logoColor=white" alt="Postman" />
+  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma" />
 </div>
 
 <br/>
@@ -25,7 +22,9 @@
 
 É um app mobile de flashcards focado em preparação para entrevistas técnicas na área de TI. A ideia é simples: você vira um card, vê a resposta e aprende de forma leve e prática, como deveria ser.
 
-O conteúdo é organizado por área de atuação e vem com uma biblioteca de cards pré-prontos para você começar de imediato. Cada vez que você vira um card, o celular vibra — um detalhe pequeno que torna a experiência mais tátil e satisfatória.
+O conteúdo é organizado por área de atuação e vem com uma biblioteca de cards pré-prontos para você começar de imediato. Cada vez que você vira um card, o celular vibra - um detalhe pequeno que torna a experiência mais tátil e satisfatória. 
+
+Ao finalizar uma seção, a IA analisa seus erros e acertos para gerar um feedback personalizado, ajudando você a entender onde está evoluindo e o que ainda precisa reforçar.
 
 <br/>
 
@@ -51,7 +50,8 @@ Um estudante que chega na entrevista técnica com mais confiança, mais consist�
 - **Firebase Authentication** — login e cadastro
 - **Cloud Firestore** — armazenamento dos cards e histórico
 - **Node.js** — servidor de apoio
-- **Pollinations AI** — API para feedback personalizado
+- **Groq AI** — API para feedback e dicas personalizadas
+- **Postman** — testar o funcionamento da API
 
 <br/>
 
