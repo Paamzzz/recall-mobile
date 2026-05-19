@@ -1,38 +1,49 @@
 <div align="center">
+  <img 
+    src="./src/assets/img/recall-banner.png" 
+    width="100%" 
+    alt="Recall Banner"
+  />
 
-# Recall
-### *Estude para entrevistas de TI do jeito que o seu cérebro aprende.*
+  <h1>Recall</h1>
 
-<br/>
+  <p>
+    <em>Estude para entrevistas de TI do jeito que o seu cérebro aprende.</em>
+  </p>
 
-![Ionic](https://img.shields.io/badge/Ionic-3880FF?style=for-the-badge&logo=ionic&logoColor=white)
-![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+  <br/>
 
+  <img src="https://img.shields.io/badge/Ionic-3880FF?style=for-the-badge&logo=ionic&logoColor=white" alt="Ionic" />
+  <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular" />
+  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black" alt="Firebase" />
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
 </div>
+
 <br/>
 
 ## 📖 Sobre o projeto
 
-É um app mobile de flashcards focado em preparação para entrevistas técnicas na área de TI. A ideia é simples: você vira um card, vê a resposta, e aprende de forma leve e repetitiva, como deveria ser.
+É um app mobile de flashcards focado em preparação para entrevistas técnicas na área de TI. A ideia é simples: você vira um card, vê a resposta e aprende de forma leve e prática, como deveria ser.
 
-O conteúdo é organizado por área de atuação e vem com uma biblioteca de cards pré-prontos para você começar de imediato. Cada vez que você vira um card, o celular vibra. Um detalhe pequeno que torna a experiência mais tátil e satisfatória.
+O conteúdo é organizado por área de atuação e vem com uma biblioteca de cards pré-prontos para você começar de imediato. Cada vez que você vira um card, o celular vibra — um detalhe pequeno que torna a experiência mais tátil e satisfatória.
 
 <br/>
 
 ## 🎯 Objetivo
 
 ### O Problema
+
 Preparar para entrevistas técnicas de TI é difícil porque o conteúdo está espalhado, não é interativo e raramente é adaptado para o formato de estudo por repetição. Não existe uma ferramenta mobile simples, focada em entrevistas reais de TI, que permita tanto consumir conteúdo pronto quanto criar o próprio.
 
 ### A Solução
-Um app mobile com flashcards de entrevista, organizado por área, com modo de resposta passiva (flip), histórico de desempenho e a possibilidade de criar cards personalizados com imagem.
+
+Um app mobile com flashcards de entrevista, organizado por área, com modo de resposta passiva (flip), histórico de desempenho e possibilidade de criar cards personalizados com imagem.
 
 ### O Resultado
-Um estudante que chega na entrevista técnica com mais confiança, mais consistência nos estudos e menos tempo perdido garimpando conteúdo em dez lugares diferentes.
+
+Um estudante que chega na entrevista técnica com mais confiança, mais consistência nos estudos e menos tempo perdido garimpando conteúdo em diferentes lugares.
 
 <br/>
 
@@ -46,38 +57,43 @@ Um estudante que chega na entrevista técnica com mais confiança, mais consist�
 
 <br/>
 
-## Getting started
- 
+## 🚀 Getting Started
+
 > Pré-requisitos: **Node.js**, **Ionic CLI**, **Android Studio SDK** e uma conta no **Firebase**.
- 
+
 ```bash
 # Clone o repositório
 git clone https://github.com/Paamzzz/recall-mobile.git
+
+# Entre na pasta do projeto
 cd recall-mobile
- 
+
 # Instale as dependências
 npm install
- 
+
 # Configure as variáveis de ambiente
 cp .env.example .env
+
 # Preencha as credenciais do Firebase no arquivo .env
- 
-# Rode no browser
+
+# Rode no navegador
 ionic serve
- 
-# Rode no dispositivo Android
+
+# Rode no Android
 ionic capacitor run android
 ```
- 
+
 <br/>
 
 ## 👩‍💻 Time
 
-| Desenvolvedor | Contato |
-| :--- | :--- |
-| **Pamela Amancio Goulart** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/Paamzzz) |
-| **João Pedro Rangel** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/7JPRBM7) |
-| **Joyce do Vale Silva** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/J01C3)|
+<div align="center">
+  | Desenvolvedor | Contato |
+  | :--- | :--- |
+  | **Pamela Amancio Goulart** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/Paamzzz) |
+  | **João Pedro Rangel** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/7JPRBM7) |
+  | **Joyce do Vale Silva** | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/J01C3) |
+</div>
 
 <br/>
 
