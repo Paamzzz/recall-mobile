@@ -5,8 +5,6 @@
     alt="Recall Banner"
   />
 
-  <h1>Recall</h1>
-
   <p>
     <em>Estude para entrevistas de TI do jeito que o seu cérebro aprende.</em>
   </p>
