@@ -1,0 +1,82 @@
+.titulo {
+  text-align: center;
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+/* DESCRIÇÃO MAIS DESTACADA */
+.descricao {
+  text-align: center;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #ffff;
+  margin: 21px 16px 31px;
+  padding: 18px;
+  background: #383838bd;
+  border-radius: 12px;
+}
+
+/* LISTA */
+.equipe {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* CARD */
+.card {
+  border-radius: 16px;
+  text-align: center;
+  padding: 16px;
+}
+
+/* AVATAR */
+.avatar {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.avatar img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid transparent; /* base */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+/* CORES DAS BORDAS */
+.pamela img {
+  border-color: #ff4da6; /* rosa */
+}
+
+.joao img {
+  border-color: #2ecc71; /* verde */
+}
+
+.joyce img {
+  border-color: #8e44ad; /* roxo */
+}
+
+/* TEXTO */
+ion-card-title {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+ion-card-subtitle {
+  font-size: 13px;
+  color: #888;
+}
+
+/* BOTÃO */
+ion-button {
+  margin-top: 8px;
+}
+
+.github-icon {
+  font-size: 28px;   /* aumenta mais ainda */
+  color: #171515;    /* cor oficial do GitHub */
+}
