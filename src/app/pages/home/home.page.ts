@@ -14,11 +14,14 @@ import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 import { addIcons } from 'ionicons';
+
 import {
   homeOutline,
   libraryOutline,
-  happy,
-  sparkles
+  happyOutline,
+  sparkles,
+  albumsOutline,
+  timeOutline
 } from 'ionicons/icons';
 
 @Component({
@@ -48,8 +51,10 @@ export class HomePage {
     addIcons({
       homeOutline,
       libraryOutline,
-      happy,
-      sparkles
+      happyOutline,
+      sparkles,
+      albumsOutline,
+      timeOutline
     });
   }
 
