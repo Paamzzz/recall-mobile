@@ -37,7 +37,15 @@ export const routes: Routes = [
   {
     path: 'sobre',
     loadComponent: () => import('./pages/sobre/sobre.page').then( m => m.SobrePage)
+  },  {
+    path: 'biblioteca',
+    loadComponent: () => import('./biblioteca/biblioteca.page').then( m => m.BibliotecaPage)
   },
+  {
+    path: 'biblioteca',
+    loadComponent: () => import('./pages/biblioteca/biblioteca.page').then( m => m.BibliotecaPage)
+  },
+
 
 
 ];
