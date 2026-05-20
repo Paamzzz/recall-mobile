@@ -1,4 +1,6 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 import {
   IonContent,
   IonButton,
@@ -30,6 +32,7 @@ import {
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [
+    CommonModule,
     IonLabel,
     IonIcon,
     IonTabButton,
@@ -48,6 +51,7 @@ export class HomePage {
   private router = inject(Router);
 
   constructor() {
+
     addIcons({
       homeOutline,
       libraryOutline,
@@ -56,11 +60,14 @@ export class HomePage {
       albumsOutline,
       timeOutline
     });
+
   }
 
   async logout() {
+
     await this.authService.sair();
     this.router.navigate(['/splash']);
+
   }
 
 }
