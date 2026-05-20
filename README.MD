@@ -55,7 +55,7 @@ Um estudante que chega na entrevista técnica com mais confiança, mais consist�
 
 <br/>
 
-## 🚀 Getting Started
+## 🚀 Como rodar
 
 > Pré-requisitos: **Node.js**, **Ionic CLI**, **Android Studio SDK** e uma conta no **Firebase**.
 
@@ -70,9 +70,10 @@ cd recall-mobile
 npm install
 
 # Configure as variáveis de ambiente
-cp .env.example .env
+cp src/environments/environment.example.ts src/environments/environment.ts
+cp src/environments/environment.example.ts src/environments/environment.prod.ts
 
-# Preencha as credenciais do Firebase no arquivo .env
+# Preencha as credenciais do Firebase e a API Key do Groq nos arquivos gerados
 
 # Rode no navegador
 ionic serve
