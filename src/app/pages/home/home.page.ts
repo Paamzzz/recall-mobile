@@ -9,7 +9,11 @@ import {
   IonTabButton,
   IonIcon,
   IonLabel,
-  IonToolbar
+  IonToolbar,
+  IonMenu,
+  IonList,
+  IonItem,
+  MenuController
 } from '@ionic/angular/standalone';
 
 import { RouterLink, Router } from '@angular/router';
@@ -23,7 +27,11 @@ import {
   happyOutline,
   sparkles,
   albumsOutline,
-  timeOutline
+  timeOutline,
+  informationCircleOutline,
+  logoGithub,
+  searchOutline,
+  filterOutline
 } from 'ionicons/icons';
 
 @Component({
@@ -41,6 +49,9 @@ import {
     IonToolbar,
     IonContent,
     IonButton,
+    IonMenu,
+    IonList,
+    IonItem,
     RouterLink
   ],
 })
@@ -49,6 +60,7 @@ export class HomePage {
   // Services
   private authService = inject(AuthService);
   private router = inject(Router);
+  private menuCtrl = inject(MenuController);
 
   constructor() {
 
@@ -58,7 +70,11 @@ export class HomePage {
       happyOutline,
       sparkles,
       albumsOutline,
-      timeOutline
+      timeOutline,
+      informationCircleOutline,
+      logoGithub,
+      searchOutline,
+      filterOutline
     });
 
   }
@@ -68,6 +84,14 @@ export class HomePage {
     await this.authService.sair();
     this.router.navigate(['/splash']);
 
+  }
+
+  openMenu() {
+    this.menuCtrl.open('home-menu');
+  }
+
+  openGithub() {
+    window.open('https://github.com/', '_blank');
   }
 
 }

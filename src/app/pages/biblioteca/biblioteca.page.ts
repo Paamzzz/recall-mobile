@@ -10,7 +10,12 @@ import {
   IonTabBar,
   IonTabButton,
   IonIcon,
-  IonLabel
+  IonLabel,
+  IonMenu,
+  IonList,
+  IonItem,
+  IonMenuButton,
+  MenuController
 } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
@@ -22,7 +27,9 @@ import {
   searchOutline,
   filterOutline,
   documentTextOutline,
-  timeOutline
+  timeOutline,
+  informationCircleOutline,
+  logoGithub
 } from 'ionicons/icons';
 
 @Component({
@@ -38,6 +45,10 @@ import {
     IonTabButton,
     IonIcon,
     IonLabel,
+    IonMenu,
+    IonList,
+    IonItem,
+    IonMenuButton,
     CommonModule,
     FormsModule,
     RouterLink
@@ -45,7 +56,9 @@ import {
 })
 export class BibliotecaPage {
 
-  constructor() {
+  constructor(
+    private menuCtrl: MenuController
+  ) {
 
     addIcons({
       homeOutline,
@@ -54,9 +67,22 @@ export class BibliotecaPage {
       searchOutline,
       filterOutline,
       documentTextOutline,
-      timeOutline
+      timeOutline,
+      informationCircleOutline,
+      logoGithub
     });
 
+  }
+
+  async openMenu() {
+    await this.menuCtrl.open('main-menu');
+  }
+
+  openGithub() {
+    window.open(
+      'https://github.com/Paamzzz/recall-mobile',
+      '_blank'
+    );
   }
 
 }

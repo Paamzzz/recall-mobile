@@ -1,4 +1,54 @@
-<ion-content [fullscreen]="true" class="home-content">
+<!-- MENU LATERAL -->
+<ion-menu
+  side="start"
+  menuId="home-menu"
+  contentId="home-content"
+>
+  <ion-content>
+
+    <div class="menu-header">
+      <h2>Menu</h2>
+    </div>
+
+    <ion-list lines="none">
+
+      <!-- SOBRE NÓS -->
+      <ion-item
+        button
+        [routerLink]="['/sobre']"
+      >
+        <ion-icon
+          slot="start"
+          name="information-circle-outline"
+        ></ion-icon>
+
+        <ion-label>Sobre nós</ion-label>
+      </ion-item>
+
+      <!-- GITHUB -->
+      <ion-item
+        button
+        (click)="openGithub()"
+      >
+        <ion-icon
+          slot="start"
+          name="logo-github"
+        ></ion-icon>
+
+        <ion-label>Mais</ion-label>
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+</ion-menu>
+
+<!-- CONTEÚDO -->
+<ion-content
+  id="home-content"
+  [fullscreen]="true"
+  class="home-content"
+>
 
   <!-- HEADER -->
   <div class="header">
@@ -7,7 +57,11 @@
       <h1>Lorem Ipsum</h1>
     </div>
 
-    <div class="avatar">
+    <!-- AVATAR ABRE MENU -->
+    <div
+      class="avatar"
+      (click)="openMenu()"
+    >
       <ion-icon name="happy-outline"></ion-icon>
     </div>
   </div>
@@ -44,23 +98,23 @@
           Frontend Developer • React & TypeScript
         </p>
 
-      <div class="tags">
+        <div class="tags">
 
-  <div class="tag-item">
-    <ion-icon name="albums-outline"></ion-icon>
-    <span>15 cards</span>
-  </div>
+          <div class="tag-item">
+            <ion-icon name="albums-outline"></ion-icon>
+            <span>15 cards</span>
+          </div>
 
-  <div class="tag-item">
-    <ion-icon name="time-outline"></ion-icon>
-    <span>Hoje</span>
-  </div>
+          <div class="tag-item">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>Hoje</span>
+          </div>
 
-  <div class="tag-pill">
-    Técnica
-  </div>
+          <div class="tag-pill">
+            Técnica
+          </div>
 
-</div>
+        </div>
 
         <div class="progress-area">
           <div class="progress-top">
@@ -72,6 +126,7 @@
             <div class="progress"></div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -87,6 +142,7 @@
       </div>
 
       <div class="tip-content">
+
         <div class="tip-header">
           <h3>Dica para entrevistas</h3>
           <ion-icon name="sparkles"></ion-icon>
@@ -98,6 +154,7 @@
           Entrevistadores valorizam muito essa clareza estrutural para
           entender seu raciocínio.
         </p>
+
       </div>
 
     </div>
@@ -128,16 +185,24 @@
 
 <!-- TAB BAR -->
 <ion-footer>
+
   <ion-toolbar>
 
     <ion-tab-bar>
 
-      <ion-tab-button tab="home" [routerLink]="['/home']" selected="true">
+      <ion-tab-button
+        tab="home"
+        [routerLink]="['/home']"
+        selected="true"
+      >
         <ion-icon name="home-outline"></ion-icon>
         <ion-label>Home</ion-label>
       </ion-tab-button>
 
-      <ion-tab-button tab="biblioteca" [routerLink]="['/biblioteca']">
+      <ion-tab-button
+        tab="biblioteca"
+        [routerLink]="['/biblioteca']"
+      >
         <ion-icon name="library-outline"></ion-icon>
         <ion-label>Biblioteca</ion-label>
       </ion-tab-button>
@@ -145,5 +210,5 @@
     </ion-tab-bar>
 
   </ion-toolbar>
-</ion-footer>
 
+</ion-footer>
