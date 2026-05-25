@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
 :host {
   --bg: #f4f4f8;
   --text: #232323;
@@ -91,7 +97,7 @@
   overflow: hidden;
 
   width: 100%;
-  min-height: 190px;
+  height: 190px;
 
   border-radius: 20px;
 
@@ -108,6 +114,7 @@
   height: 100%;
 
   object-fit: cover;
+  pointer-events: none;
 }
 
 .overlay {
@@ -162,24 +169,48 @@
 
 .tags {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  align-items: center;
+  gap: 18px;
 
-  margin-top: 14px;
+  margin-top: 18px;
+
+  padding-top: 14px;
+
+  border-top: 1px solid rgba(255,255,255,0.22);
 }
 
-.tags span {
-  padding: 4px 10px;
+.tag-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color: rgba(255,255,255,0.95);
+
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.tag-item ion-icon {
+  font-size: 1rem;
+
+  color: rgba(255,255,255,0.9);
+}
+
+.tag-pill {
+  padding: 6px 16px;
 
   border-radius: 999px;
 
-  border: 1px solid rgba(255,255,255,0.25);
+  background: rgba(135, 120, 255, 0.35);
 
-  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
 
-  backdrop-filter: blur(4px);
+  color: rgba(255,255,255,0.85);
 
-  font-size: 0.62rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+
+  backdrop-filter: blur(6px);
 }
 
 .progress-area {
@@ -206,15 +237,19 @@
   border-radius: 999px;
 
   background: rgba(255,255,255,0.18);
+  overflow: hidden;
 }
 
 .progress {
-  width: 12%;
+  width: 0%;
+
   height: 100%;
 
   border-radius: 999px;
 
   background: white;
+
+  transition: width 0.3s ease;
 }
 
 /* =========================
@@ -223,6 +258,7 @@
 
 .tip-card {
   position: relative;
+  overflow: hidden;
 
   display: flex;
   gap: 14px;
@@ -244,14 +280,15 @@
   position: absolute;
 
   left: 0;
-  top: 14px;
-  bottom: 14px;
+  top: 0;
+  bottom: 0;
 
-  width: 3px;
+  width: 5px;
 
   border-radius: 999px;
 
-  background: #ff9800;
+  background: #f18701;
+
 }
 
 .tip-icon {
@@ -393,15 +430,30 @@
 ========================= */
 
 ion-footer {
-  box-shadow: 0 -2px 12px rgba(0,0,0,0.04);
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+  border: none;
+  background: transparent;
+}
+
+ion-footer::before {
+  display: none;
+}
+
+ion-toolbar {
+  --border-width: 0;
+  --background: #fff;
+  padding: 0;
 }
 
 ion-tab-bar {
   --background: #ffffff;
+  --border: 0;
 
   height: 72px;
 
   border: none;
+
+  box-shadow: none;
 }
 
 ion-tab-button {
@@ -448,3 +500,4 @@ ion-tab-button ion-icon {
     border-radius: 22px;
   }
 }
+

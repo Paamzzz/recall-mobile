@@ -8,7 +8,7 @@
     </div>
 
     <div class="avatar">
-      <ion-icon name="happy"></ion-icon>
+      <ion-icon name="happy-outline"></ion-icon>
     </div>
   </div>
 
@@ -24,9 +24,11 @@
         muted
         loop
         playsinline
+        webkit-playsinline
+        preload="auto"
         class="card-video"
       >
-        <source src="assets/video/bg-card.mp4" type="video/mp4">
+        <source src="assets/video/gradient-mesh.mp4" type="video/mp4">
       </video>
 
       <!-- OVERLAY -->
@@ -42,11 +44,23 @@
           Frontend Developer • React & TypeScript
         </p>
 
-        <div class="tags">
-          <span>15 cards</span>
-          <span>Hoje</span>
-          <span>Técnica</span>
-        </div>
+      <div class="tags">
+
+  <div class="tag-item">
+    <ion-icon name="albums-outline"></ion-icon>
+    <span>15 cards</span>
+  </div>
+
+  <div class="tag-item">
+    <ion-icon name="time-outline"></ion-icon>
+    <span>Hoje</span>
+  </div>
+
+  <div class="tag-pill">
+    Técnica
+  </div>
+
+</div>
 
         <div class="progress-area">
           <div class="progress-top">
@@ -114,17 +128,21 @@
 
 <!-- TAB BAR -->
 <ion-footer>
-  <ion-tab-bar slot="bottom">
+  <ion-toolbar>
 
-    <ion-tab-button tab="home" selected="true">
-      <ion-icon name="home-outline"></ion-icon>
-      <ion-label>Home</ion-label>
-    </ion-tab-button>
+    <ion-tab-bar>
 
-    <ion-tab-button tab="biblioteca">
-      <ion-icon name="library-outline"></ion-icon>
-      <ion-label>Biblioteca</ion-label>
-    </ion-tab-button>
+      <ion-tab-button selected="true">
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
 
-  </ion-tab-bar>
+      <ion-tab-button>
+        <ion-icon name="library-outline"></ion-icon>
+        <ion-label>Biblioteca</ion-label>
+      </ion-tab-button>
+
+    </ion-tab-bar>
+
+  </ion-toolbar>
 </ion-footer>
