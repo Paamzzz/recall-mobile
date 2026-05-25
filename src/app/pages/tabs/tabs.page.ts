@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component } from '@angular/core';
+import {  IonTabs, IonTabButton, IonIcon, IonTabBar} from '@ionic/angular/standalone';
+
+import { addIcons } from 'ionicons';
+import { home, albumsOutline, peopleOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-tabs',
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [ IonTabs, IonTabButton, IonIcon, IonTabBar]
 })
-export class TabsPage implements OnInit {
+export class TabsPage {
 
-  constructor() { }
+  constructor() {
+
+
+     addIcons({ home, albumsOutline, peopleOutline})
+   }
 
   ngOnInit() {
   }

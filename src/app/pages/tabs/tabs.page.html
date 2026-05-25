@@ -1,13 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>tabs</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tabs</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+       <ion-tabs>
+          <ion-tab-bar slot="bottom">
+               <ion-tab-button tab="home">
+                    <ion-icon name="home"></ion-icon>
+                    Home
+               </ion-tab-button>
+               <ion-tab-button tab="trilha">
+                    <ion-icon name="albums-outline"></ion-icon>
+                    Trilhas
+               </ion-tab-button>
+               <ion-tab-button tab="sobre">
+                    <ion-icon name="people-outline"></ion-icon>
+                    Sobre
+               </ion-tab-button>
+          </ion-tab-bar>
+     </ion-tabs>
