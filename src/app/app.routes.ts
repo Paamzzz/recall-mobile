@@ -44,12 +44,12 @@ export const routes: Routes = [
           ]
      },
 
-     
+
      {
           path: 'sessao',
           loadComponent: () => import('./pages/sessao/sessao.page').then(m => m.SessaoPage)
      },
-     
+
      {
           path: 'resultado',
           loadComponent: () => import('./pages/resultado/resultado.page').then(m => m.ResultadoPage)
