@@ -92,12 +92,12 @@
           <ion-icon name="sparkles"></ion-icon>
         </div>
 
-        <p>
-          Ao explicar suas decisões técnicas, utilize o método STAR:
-          detalhe a Situação, a Tarefa, a Ação e o Resultado.
-          Entrevistadores valorizam muito essa clareza estrutural para
-          entender seu raciocínio.
-        </p>
+           <!-- Loader enquanto busca -->
+      <p *ngIf="carregando">Buscando dica...</p>
+
+
+        <p *ngIf="!carregando">{{ dica }}</p>
+
       </div>
 
     </div>

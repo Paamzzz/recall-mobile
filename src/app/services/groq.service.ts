@@ -54,7 +54,7 @@ export class GroqService {
      async gerarDicaEntrevista(): Promise<string> { // por ser um async, temos que PROMETER uma resposta
           const historico = this.carregarHistorico();
 
-          const prompt = `Faça uma dica de no máximo 2 frases para pessoas que querem fazer entrevistas de emprego na área de TI. Seja objetivo
+          const prompt = `Faça uma dica de no máximo 500 caracteres para pessoas que querem fazer entrevistas de emprego na área de TI. Seja objetivo
            mas com uma breve personalidade. Pode ser tanto algo técnico como comportamental.
            Vá direto para a resposta, sem introdução do tipo: 'Para se destacar em entrevistas
            de emprego na área de TI...'. Não dê dicas óbvias, olhe para o mercado de trabalho e seus requisitos atuais.
