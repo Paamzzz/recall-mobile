@@ -1,13 +1,112 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>sessao</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="flash-content">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">sessao</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- HEADER -->
+  <div class="top-card">
+
+    <div class="top-info">
+      <div>
+        <h2>Entrevista Frontend</h2>
+        <p>Frontend Developer • React & TypeScript</p>
+      </div>
+
+      <div class="avatar">
+        <ion-icon name="happy-outline"></ion-icon>
+      </div>
+    </div>
+
+    <ion-button class="close-btn" fill="solid">
+      Encerrar
+    </ion-button>
+
+    <!-- PROGRESS -->
+    <div class="progress-area">
+
+      <div class="progress-header">
+        <span>Progresso</span>
+        <span>8/10</span>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CONTADOR -->
+  <div class="counter-area">
+
+    <button class="nav-btn">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </button>
+
+    <span>8/10</span>
+
+    <button class="nav-btn">
+      <ion-icon name="arrow-forward-outline"></ion-icon>
+    </button>
+
+  </div>
+
+  <!-- CARD -->
+  <div class="flip-container" (click)="flipCard()">
+
+    <div class="flip-card" [class.flipped]="isFlipped">
+
+      <!-- FRENTE -->
+      <div class="card-face card-front">
+
+        <span class="card-label question">
+          PERGUNTA
+        </span>
+
+        <h1>
+          O que é o Virtual DOM e
+          por que o React o utiliza?
+        </h1>
+
+      </div>
+
+      <!-- VERSO -->
+      <div class="card-face card-back">
+
+        <span class="card-label answer">
+          RESPOSTA
+        </span>
+
+        <p>
+          É uma representação leve do DOM
+          real em memória. O React o usa
+          para calcular as mudanças mínimas
+          necessárias antes de atualizar o
+          DOM real, tornando as atualizações
+          de UI mais eficientes.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <p class="tip">
+    Clique para ver o outro lado da carta!
+  </p>
+
+  <!-- BOTÕES -->
+  <div class="actions" *ngIf="isFlipped">
+
+    <button class="action-btn success">
+      <ion-icon name="checkmark-outline"></ion-icon>
+      Acertei
+    </button>
+
+    <button class="action-btn danger">
+      <ion-icon name="close-outline"></ion-icon>
+      Errei
+    </button>
+
+  </div>
+
 </ion-content>
