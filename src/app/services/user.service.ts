@@ -13,6 +13,11 @@ export class UserService {
      const docUser = doc(this.firestore, 'users', uid);
      return docData(docUser) as Observable<User>;
   }
-
-
+  
+  // salva os dados no firestore, enquanto o AuthService só cria a conta
+  // Promise<void> apenas executa sem esperar um retorno
+  criarUserProfile(uid: string, data: User): Promise<void> { 
+     const docUser = doc(this.firestore, 'users', uid);
+     return setDoc(docUser, data); //adiciona os dados 
+  }
 }
