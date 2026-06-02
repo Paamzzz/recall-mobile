@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
+}
+
+:host {
+  --bg: #f3f3f7;
+  --text: #202020;
+  --muted: #8b8b8b;
+
+  --orange: #ff8a00;
+  --purple: #7473ff;
+}
+
+ion-content {
+  --background: var(--bg);
+}
+
+.flash-content {
+  padding: 0;
+}
+
+/* ================= HEADER ================= */
+
+.top-card {
+  width: 100%;
+  background: white;
+  padding: 18px 20px 14px;
+
+  border-bottom: 1px solid #ececec;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.top-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-info h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.top-info p {
+  margin: 3px 0 0;
+  font-size: 10px;
+  color: #9a9a9a;
+}
+
+.avatar {
+  width: clamp(42px, 12vw, 54px);
+  height: clamp(42px, 12vw, 54px);
+
+  border-radius: 50%;
+
+  background: linear-gradient(
+    135deg,
+    #8bb3ff 0%,
+    #8bb3ff 50%,
+    #f6b23d 50%,
+    #f6b23d 100%
+  );
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon {
+    font-size: clamp(18px, 5vw, 24px);
+    color: #111;
+  }
+}
+
+.close-btn {
+  margin-top: 12px;
+
+  --background: #262626;
+  --color: white;
+  --border-radius: 999px;
+
+  height: 32px;
+  width: 90px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-transform: none;
+}
+
+/* ================= PROGRESS ================= */
+
+.progress-area {
+  margin-top: 14px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 6px;
+
+  font-size: 10px;
+  color: #7c7c7c;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+
+  background: #e8e8e8;
+
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  width: 80%;
+  height: 100%;
+
+  background: #5d5cff;
+
+  border-radius: 999px;
+}
+
+/* ================= CONTADOR ================= */
+
+.counter-area {
+  padding: 16px 22px 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  max-width: 330px;
+  margin: 0 auto;
+}
+
+.counter-area span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #666;
+}
+
+.nav-btn {
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+  border: 1px solid #dedede;
+
+  background: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #444;
+  font-size: 15px;
+
+  transition: .2s;
+}
+
+.nav-btn:active {
+  transform: scale(0.95);
+}
+
+/* ================= CARD ================= */
+
+.flip-container {
+  perspective: 1400px;
+
+  padding: 0 20px;
+  margin-top: 8px;
+}
+
+.flip-card {
+  width: 100%;
+  max-width: 330px;
+  height: 280px;
+
+  margin: 0 auto;
+
+  position: relative;
+
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(.4,.2,.2,1);
+}
+
+.flip-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  backface-visibility: hidden;
+
+  background: white;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 3px 10px rgba(0,0,0,.08),
+    0 1px 3px rgba(0,0,0,.04);
+
+  padding: 18px 22px;
+
+  overflow: hidden;
+}
+
+/* Linha colorida superior */
+
+.card-front::before,
+.card-back::before {
+  content: '';
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3px;
+
+  border-radius: 22px 22px 0 0;
+}
+
+.card-front::before {
+  background: var(--orange);
+}
+
+.card-back::before {
+  background: var(--purple);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+}
+
+/* ================= LABEL ================= */
+
+.card-label {
+  display: block;
+
+  text-align: center;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: .5px;
+
+  margin-bottom: 32px;
+}
+
+.question {
+  color: var(--orange);
+}
+
+.answer {
+  color: var(--purple);
+}
+
+/* ================= TEXTO ================= */
+
+.card-front h1 {
+  margin: 0;
+
+  height: 65%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  font-size: 18px;
+  line-height: 1.4;
+  font-weight: 700;
+
+  color: var(--text);
+}
+
+.card-back p {
+  margin: 0;
+
+  font-size: 15px;
+  line-height: 1.45;
+  font-weight: 500;
+
+  color: #2a2a2a;
+}
+
+/* ================= TIP ================= */
+
+.tip {
+  text-align: center;
+
+  margin-top: 10px;
+
+  font-size: 11px;
+  color: #9d9d9d;
+
+  padding: 0 16px;
+}
+
+/* ================= ACTIONS ================= */
+
+.actions {
+  display: flex;
+  gap: 14px;
+
+  max-width: 330px;
+  margin: 0 auto;
+
+  padding: 20px 20px 30px;
+}
+
+.action-btn {
+  flex: 1;
+
+  height: 38px;
+
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  white-space: nowrap;
+
+  transition: .2s;
+}
+
+.success {
+  background: #262626;
+  color: white;
+  border: none;
+}
+
+.danger {
+  background: white;
+  color: #262626;
+
+  border: 1.5px solid #262626;
+}
+
+.action-btn:active {
+  transform: scale(.97);
+}
+
+/* ================= RESPONSIVO ================= */
+
+@media (max-width: 430px) {
+
+  .flip-card {
+    height: 280px;
+  }
+
+  .card-front h1 {
+    font-size: 17px;
+  }
+
+  .card-back p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+
+  .flip-card {
+    height: 260px;
+  }
+
+  .card-front h1 {
+    font-size: 15px;
+  }
+
+  .card-back p {
+    font-size: 13px;
+  }
+
+  .action-btn {
+    font-size: 12px;
+  }
+}

@@ -1,20 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
+
+import { addIcons } from 'ionicons';
+import {
+  arrowBackOutline,
+  arrowForwardOutline,
+  checkmarkOutline,
+  closeOutline,
+  happyOutline
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-sessao',
+  standalone: true,
+  imports: [CommonModule, IonicModule],
   templateUrl: './sessao.page.html',
   styleUrls: ['./sessao.page.scss'],
-  standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class SessaoPage implements OnInit {
+export class SessaoPage {
 
-  constructor() { }
+  isFlipped = false;
 
-  ngOnInit() {
+  constructor() {
+    addIcons({
+      arrowBackOutline,
+      arrowForwardOutline,
+      checkmarkOutline,
+      closeOutline,
+      happyOutline
+    });
+  }
+
+  flipCard() {
+    this.isFlipped = !this.isFlipped;
   }
 
 }
