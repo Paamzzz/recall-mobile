@@ -19,5 +19,6 @@ export class UserService {
   criarUserProfile(uid: string, data: User): Promise<void> { 
      const docUser = doc(this.firestore, 'users', uid);
      return setDoc(docUser, data); //adiciona os dados 
+     // data = valor que segue a interface 'user.ts'
   }
 }
