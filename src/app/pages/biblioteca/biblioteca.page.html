@@ -1,0 +1,298 @@
+<!-- MENU LATERAL -->
+<ion-menu
+  side="start"
+  menuId="main-menu"
+  contentId="main-content"
+>
+  <ion-content>
+
+    <div class="menu-header">
+      <h2>Menu</h2>
+    </div>
+
+    <ion-list lines="none">
+
+      <!-- SOBRE NÓS -->
+      <ion-item
+        button
+        [routerLink]="['/sobre']"
+      >
+        <ion-icon
+          slot="start"
+          name="information-circle-outline"
+        ></ion-icon>
+
+        <ion-label>Sobre nós</ion-label>
+      </ion-item>
+
+      <!-- GITHUB -->
+      <ion-item
+        button
+        (click)="openGithub()"
+      >
+        <ion-icon
+          slot="start"
+          name="logo-github"
+        ></ion-icon>
+
+        <ion-label>Mais</ion-label>
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+</ion-menu>
+
+<!-- CONTEÚDO -->
+<ion-content
+  id="main-content"
+  [fullscreen]="true"
+  class="biblioteca-content"
+>
+
+  <!-- HEADER -->
+  <div class="header">
+
+    <h1>Biblioteca</h1>
+
+    <div
+      class="avatar"
+      (click)="openMenu()"
+    >
+      <ion-icon name="happy-outline"></ion-icon>
+    </div>
+
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-area">
+
+    <div class="search-box">
+      <ion-icon name="search-outline"></ion-icon>
+
+      <input
+        type="text"
+        placeholder="Pesquisar"
+      >
+    </div>
+
+    <button class="filter-btn">
+      <ion-icon name="filter-outline"></ion-icon>
+    </button>
+
+  </div>
+
+  <!-- CARD 1 -->
+  <div class="library-card purple">
+
+    <div class="stack-card stack-1"></div>
+    <div class="stack-card stack-2"></div>
+    <div class="stack-card stack-3"></div>
+    <div class="stack-card stack-4"></div>
+
+    <div class="card-body">
+
+      <div class="top-row">
+
+        <div>
+          <h2>Entrevista Frontend</h2>
+
+          <p class="subtitle">
+            Frontend Developer - React & TypeScript
+          </p>
+        </div>
+
+        <span class="status blue">
+          Pleno
+        </span>
+
+      </div>
+
+      <div class="tags">
+
+        <div class="tag-item">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <span>15 cards</span>
+        </div>
+
+        <div class="tag-item">
+          <ion-icon name="time-outline"></ion-icon>
+          <span>Hoje</span>
+        </div>
+
+        <span class="tag-pill purple-pill">
+          Técnica
+        </span>
+
+      </div>
+
+      <div class="progress-area">
+
+        <div class="progress-top">
+          <span>Progresso</span>
+          <span>10/15</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress purple-progress"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CARD 2 -->
+  <div class="library-card orange">
+
+    <div class="stack-card stack-1"></div>
+    <div class="stack-card stack-2"></div>
+    <div class="stack-card stack-3"></div>
+    <div class="stack-card stack-4"></div>
+
+    <div class="card-body">
+
+      <div class="top-row">
+
+        <div>
+          <h2>Soft Skills & Comportamental</h2>
+
+          <p class="subtitle">
+            Qualquer cargo - Habilidades interpessoais
+          </p>
+        </div>
+
+        <span class="status purple-status">
+          Sênior
+        </span>
+
+      </div>
+
+      <div class="tags">
+
+        <div class="tag-item">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <span>15 cards</span>
+        </div>
+
+        <div class="tag-item">
+          <ion-icon name="time-outline"></ion-icon>
+          <span>Hoje</span>
+        </div>
+
+        <span class="tag-pill orange-pill">
+          Comportamental
+        </span>
+
+      </div>
+
+      <div class="progress-area">
+
+        <div class="progress-top">
+          <span>Progresso</span>
+          <span>10/15</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress orange-progress"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- CARD 3 -->
+  <div class="library-card purple">
+
+    <div class="stack-card stack-1"></div>
+    <div class="stack-card stack-2"></div>
+    <div class="stack-card stack-3"></div>
+    <div class="stack-card stack-4"></div>
+
+    <div class="card-body">
+
+      <div class="top-row">
+
+        <div>
+          <h2>Entrevista Frontend</h2>
+
+          <p class="subtitle">
+            Frontend Developer - React & TypeScript
+          </p>
+        </div>
+
+        <span class="status cyan">
+          Junior
+        </span>
+
+      </div>
+
+      <div class="tags">
+
+        <div class="tag-item">
+          <ion-icon name="document-text-outline"></ion-icon>
+          <span>15 cards</span>
+        </div>
+
+        <div class="tag-item">
+          <ion-icon name="time-outline"></ion-icon>
+          <span>Hoje</span>
+        </div>
+
+        <span class="tag-pill purple-pill">
+          Técnica
+        </span>
+
+      </div>
+
+      <div class="progress-area">
+
+        <div class="progress-top">
+          <span>Progresso</span>
+          <span>10/15</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress purple-progress"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>
+
+<!-- FOOTER -->
+<ion-footer>
+
+  <ion-toolbar>
+
+    <ion-tab-bar>
+
+      <ion-tab-button
+        tab="home"
+        [routerLink]="['/home']"
+      >
+        <ion-icon name="home-outline"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button
+        tab="biblioteca"
+        [routerLink]="['/biblioteca']"
+        selected="true"
+      >
+        <ion-icon name="library-outline"></ion-icon>
+        <ion-label>Biblioteca</ion-label>
+      </ion-tab-button>
+
+    </ion-tab-bar>
+
+  </ion-toolbar>
+
+</ion-footer>

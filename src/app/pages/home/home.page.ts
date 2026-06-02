@@ -8,8 +8,7 @@ import {
      IonTabButton,
      IonIcon,
      IonLabel,
-     IonToolbar
-} from '@ionic/angular/standalone';
+     IonToolbar, IonItem, IonList } from '@ionic/angular/standalone';
 
 import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -34,7 +33,7 @@ import {
      templateUrl: 'home.page.html',
      styleUrls: ['home.page.scss'],
      standalone: true,
-     imports: [
+     imports: [IonList, IonItem,
           IonLabel,
           IonIcon,
           IonTabButton,
