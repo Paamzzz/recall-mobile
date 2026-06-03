@@ -1,4 +1,4 @@
-export interface DeckProgress {
+export interface Progress {
      id: string;
      deckId: string;
      totalCards: number;
