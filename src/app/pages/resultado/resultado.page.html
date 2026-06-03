@@ -1,13 +1,115 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>resultado</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="result-content">
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">resultado</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- HERO CARD COM VÍDEO -->
+  <div class="hero-card">
+
+  <video
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline>
+    <source src="assets/video/gradient-mesh.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-shape"></div>
+
+  <div class="hero-content">
+
+    <div class="icon-circle">
+      <ion-icon name="star-outline"></ion-icon>
+    </div>
+
+    <h1>{{ titulo }}</h1>
+
+    <p class="subtitle">
+      {{ subtitulo }}
+    </p>
+
+    <div class="score">
+      {{ percentual }}%
+    </div>
+
+    <p class="answers">
+      {{ acertos }} de {{ totalPerguntas }} respostas corretas
+    </p>
+
+  </div>
+
+</div>
+
+  <!-- FEEDBACK POSITIVO -->
+ <div class="feedback-card success">
+
+  <ion-icon
+    class="sparkle"
+    name="sparkles">
+  </ion-icon>
+
+  <div class="feedback-header">
+
+    <div class="feedback-icon">
+      <ion-icon name="checkmark"></ion-icon>
+    </div>
+
+    <span>Você foi bom em...</span>
+
+  </div>
+
+  <p class="feedback-text">
+    {{ pontosFortes }}
+  </p>
+
+</div>
+
+  <!-- FEEDBACK MELHORIA -->
+  <div class="feedback-card warning">
+
+  <ion-icon
+    class="sparkle"
+    name="sparkles">
+  </ion-icon>
+
+  <div class="feedback-header">
+
+    <div class="feedback-icon">
+      <ion-icon name="alert-circle"></ion-icon>
+    </div>
+
+    <span>Para melhorar...</span>
+
+  </div>
+
+  <p class="feedback-text">
+    {{ pontosMelhoria }}
+  </p>
+
+</div>
+
+  <!-- BOTÕES -->
+  <div class="buttons-container">
+
+    <ion-button
+      expand="block"
+      class="repeat-btn"
+      (click)="repetirDeck()">
+
+      Repetir Deck
+
+    </ion-button>
+
+    <ion-button
+      expand="block"
+      fill="outline"
+      class="library-btn"
+      (click)="voltarBiblioteca()">
+
+      Voltar à biblioteca
+
+    </ion-button>
+
+  </div>
+
 </ion-content>

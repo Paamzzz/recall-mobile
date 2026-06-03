@@ -418,47 +418,36 @@ ion-menu ion-label {
    TIP CARD
 ========================= */
 
+/* =========================
+   TIP CARD
+========================= */
+
 .tip-card {
   position: relative;
-  overflow: hidden;
 
-  display: flex;
-  gap: 14px;
+  margin: 0;
+  padding: 18px;
 
-  padding: 16px;
+  background: #ffffff;
 
-  border-radius: 16px;
+  border-radius: 14px;
 
-  background: #fff;
+  border-left: 3px solid #f18701;
 
   box-shadow:
-    0 2px 4px rgba(0,0,0,0.03),
-    0 8px 20px rgba(0,0,0,0.04);
-}
-
-.tip-card::before {
-  content: '';
-
-  position: absolute;
-
-  left: 0;
-  top: 0;
-  bottom: 0;
-
-  width: 5px;
-
-  border-radius: 999px;
-
-  background: #f18701;
+    0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .tip-icon {
-  width: 32px;
-  height: 32px;
+  margin-bottom: 10px;
+  width: 50%;
+  width: 27px;
+  height: 27px;
 
-  border-radius: 10px;
+  border-radius: 50%;
 
-  background: #fff3df;
+  background: #ffe7c7;
+  color: #f18701;
 
   display: flex;
   align-items: center;
@@ -466,7 +455,7 @@ ion-menu ion-label {
 
   flex-shrink: 0;
 
-  font-size: 1rem;
+  font-size: 12px;
 }
 
 .tip-content {
@@ -476,31 +465,36 @@ ion-menu ion-label {
 .tip-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-
   gap: 10px;
+
+  margin-bottom: 14px;
 }
 
 .tip-header h3 {
   margin: 0;
 
-  font-size: clamp(1rem, 3vw, 1.2rem);
+  font-size: 16px;
   font-weight: 700;
 
-  color: #2a2a2a;
+  color: #f18701;
 }
 
 .tip-header ion-icon {
-  font-size: 1rem;
-  color: #bdbdbd;
-  --color: #bdbdbd;
+  position: absolute;
+
+  top: 12px;
+  right: 12px;
+
+  font-size: 16px;
+
+  color: #b8b6b6;
 }
 
 .tip-content p {
-  margin: 10px 0 0;
+  margin: 0;
 
-  font-size: clamp(0.78rem, 2.5vw, 0.95rem);
-  line-height: 1.45;
+  font-size: 13px;
+  line-height: 1.5;
 
   color: #555;
 }
