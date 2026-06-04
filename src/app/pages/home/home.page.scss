@@ -578,56 +578,6 @@ ion-menu ion-label {
     );
 }
 
-/* =========================
-   TAB BAR
-========================= */
-
-ion-footer {
-  box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
-  border: none;
-  background: transparent;
-}
-
-ion-footer::before {
-  display: none;
-}
-
-ion-toolbar {
-  --border-width: 0;
-  --background: #fff;
-  padding: 0;
-}
-
-ion-tab-bar {
-  --background: #ffffff;
-  --border: 0;
-
-  height: 72px;
-
-  border: none;
-
-  box-shadow: none;
-}
-
-ion-tab-button {
-  --color: #777;
-  --color-selected: #6b6cff;
-
-  font-size: 0.7rem;
-}
-
-ion-tab-button.tab-selected {
-  color: #6b6cff;
-}
-
-ion-tab-button.tab-selected ion-icon,
-ion-tab-button.tab-selected ion-label {
-  color: #6b6cff;
-}
-
-ion-tab-button ion-icon {
-  font-size: 1.3rem;
-}
 
 /* =========================
    RESPONSIVO
