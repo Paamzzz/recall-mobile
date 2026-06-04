@@ -11,7 +11,7 @@ import {
   IonToolbar,
   IonItem,
   IonList,
-  IonMenu
+  IonMenu,
 } from '@ionic/angular/standalone';
 
 import { MenuController } from '@ionic/angular';
@@ -31,10 +31,13 @@ import {
   logoGithub
 } from 'ionicons/icons';
 
+import { Observable, firstValueFrom  } from 'rxjs';
+
 //* Todos os serviços 
 import { GroqService } from '../../services/groq.service';
 import { DeckService } from '../../services/deck.service';
 import { UserService } from '../../services/user.service';
+import { Deck } from 'src/app/interfaces/deck';
 
 @Component({
   selector: 'app-home',
@@ -58,7 +61,10 @@ import { UserService } from '../../services/user.service';
 })
 export class HomePage implements OnInit {
   dica: string = 'Carregando dica...';
-  carregando: boolean = true;
+  deckAleatorio: Deck | null = null; //O | null significa "pode ser um Deck ou pode ser nulo". Isso é chamado de union type.
+  carregandoDeck: boolean = true;
+  carregandoDica: boolean = true;
+  nomeUsuario = 'Amanda'; // temporário
 
   // Services
   private router = inject(Router);
@@ -81,19 +87,44 @@ export class HomePage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.gerarDicaEntrevista();
+     ngOnInit() {
+          this.gerarDicaEntrevista();
+     }
+
+     async ionViewWillEnter() {
+         await this.pegarRandomDeck();
+         
+          // 1. pega o usuário logado
+          const usuario = await firstValueFrom(this.authService.usuarioAtual$);
+
+          // 2. se existir, usa o uid para buscar o perfil
+          if (usuario) {
+               const perfil = await firstValueFrom(this.userService.pegarUserProfile(usuario.uid));
+               this.nomeUsuario = perfil.name;
+          }
+     }
+
+  // Gerar deck deckAleatorio
+  async pegarRandomDeck(): Promise<void> {
+     try {
+          this.carregandoDeck = true;
+          this.deckAleatorio = await this.deckService.pegarRandomDeck();
+     } catch (error) {
+          console.error('Erro ao carregar deck:', error);
+     } finally {
+      this.carregandoDeck = false;
+    }
   }
 
   async gerarDicaEntrevista() {
     try {
-      this.carregando = true;
+      this.carregandoDica = true;
       this.dica = await this.groqService.gerarDicaEntrevista();
     } catch (error) {
       console.error('Erro ao carregar dica:', error);
       this.dica = 'Não foi possível carregar a dica. Tente novamente.';
     } finally {
-      this.carregando = false;
+      this.carregandoDica = false;
     }
   }
 

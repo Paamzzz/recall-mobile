@@ -54,7 +54,7 @@
   <div class="header">
     <div>
       <p class="greeting">Bom dia 👋</p>
-      <h1>Lorem Ipsum</h1>
+      <h1>{{ nomeUsuario }}</h1>
     </div>
 
     <!-- AVATAR ABRE MENU -->
@@ -149,10 +149,10 @@
         </div>
 
            <!-- Loader enquanto busca -->
-      <p *ngIf="carregando">Buscando dica...</p>
+      <p *ngIf="carregandoDica">Buscando dica...</p>
 
 
-        <p *ngIf="!carregando">{{ dica }}</p>
+        <p *ngIf="!carregandoDica">{{ dica }}</p>
 
       </div>
 
