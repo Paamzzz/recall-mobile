@@ -31,7 +31,10 @@ import {
   logoGithub
 } from 'ionicons/icons';
 
+//* Todos os serviços 
 import { GroqService } from '../../services/groq.service';
+import { DeckService } from '../../services/deck.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -58,9 +61,11 @@ export class HomePage implements OnInit {
   carregando: boolean = true;
 
   // Services
-  private authService = inject(AuthService);
   private router = inject(Router);
+  private authService = inject(AuthService);
   private groqService = inject(GroqService);
+  private userService = inject(UserService);
+  private deckService = inject(DeckService);
   private menuCtrl = inject(MenuController);
 
   constructor() {
