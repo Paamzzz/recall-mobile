@@ -7,7 +7,7 @@ export class SessionService {
 
      private session: Session = { // inicializar o molde do 0
           currentCard: 0,
-          allCards: [], 
+          allCards: [],
           correctCards: [],
           wrongCards: [],
           skippedCards: []
@@ -47,12 +47,20 @@ export class SessionService {
           this.session.currentCard++ // para mudar o card e prosseguir para o próximo
      }
 
-     calcularProgresso() {
-         const progressoAtual = this.session.correctCards.length / this.session.allCards.length * 100;
-         return progressoAtual
+     avancarCard() {
+          this.session.currentCard++;
      }
 
-     finalizarSessao () {
+     voltarCard() {
+          this.session.currentCard--;
+     }
+
+     calcularProgresso() {
+          const progressoAtual = this.session.correctCards.length / this.session.allCards.length * 100;
+          return progressoAtual
+     }
+
+     finalizarSessao() {
           // precisa ser salvo em var, se não a função apaga antes de retornar
           const allCards = this.session.allCards.length;
           const correctCards = this.session.correctCards;
@@ -66,6 +74,6 @@ export class SessionService {
                correctCards,
                wrongCards,
                progresso
-          } 
+          }
      }
 }
