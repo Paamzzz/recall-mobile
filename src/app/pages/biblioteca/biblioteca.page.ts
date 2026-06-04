@@ -14,7 +14,6 @@ import {
   IonMenu,
   IonList,
   IonItem,
-  IonMenuButton,
   MenuController
 } from '@ionic/angular/standalone';
 
@@ -48,7 +47,6 @@ import {
     IonMenu,
     IonList,
     IonItem,
-    IonMenuButton,
     CommonModule,
     FormsModule,
     RouterLink
