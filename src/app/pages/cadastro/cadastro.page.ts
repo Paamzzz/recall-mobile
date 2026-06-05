@@ -71,7 +71,8 @@ export class CadastroPage {
      senha: ['']
  })
 
- // Cadastro via Services
+ //* Cadastro via Services
+     // Cadastro comum
   async confirmarCadastro() {
       const nome = this.cadastroForm.value.nome ?? ''; // o TS precisa saber que está tudo bem caso vier um "Undefined" nos campos
       const email = this.cadastroForm.value.email ?? ''; //Por isso atribuimos os var do formGroup aqui 
@@ -79,7 +80,7 @@ export class CadastroPage {
 
        try {
             const userInfo = await this.auth.cadastrar(email, senha) // armazena a resposta do firebase (uid, senha, email..)
-            await this.createUser.criarUserProfile(userInfo.user.uid,{
+            await this.createUser.criarUserProfile(userInfo.user.uid,{ // chamamos o User Service e colocamos o UID junto com as info do objeto construido acima
                uid: userInfo.user.uid, 
                name: nome,
                email: email,
@@ -92,8 +93,14 @@ export class CadastroPage {
        }
   }
 
-  loginComGoogle() {
-    alert('Login com Google');
-  }
+     // Cadastro com Google
+     async cadastrarComGoogle() {
+          try { // não precisa de NADA (diferente da de cima), pois estamos usando informações diretas do Google
+               await this.auth.entrarComGoogle()  // está função toma conta de tudo
+               this.router.navigate(['/tabs/home'])
+          } catch (error: any) {
+               this.erroGeral = error.message;
+          }
+     }
 
 }
