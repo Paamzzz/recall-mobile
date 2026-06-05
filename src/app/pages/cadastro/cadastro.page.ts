@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder  } from '@angular/forms';
 import { inject } from '@angular/core';
 
 import { AuthService } from 'src/app/services/auth.service';
@@ -38,8 +38,13 @@ export class CadastroPage {
   mostrarSenha = false;
   mostrarRepetirSenha = false;
 
+ // Serviços de cadastro
   private auth = inject(AuthService);
   private createUser = inject(UserService);
+  private fb = inject(FormBuilder); // ligar o form do HTML ao objeto do TypeScript
+  
+  // variavel para erros no metodo async
+  erroGeral = '';
 
   constructor(private router: Router) {
 
@@ -59,15 +64,32 @@ export class CadastroPage {
   }
 
 
+// Criação do objeto do formulário para puxar os dados
+ cadastroForm = this.fb.group({
+     nome: [''], // representa: valor inicial vazio
+     email: [''], 
+     senha: ['']
+ })
+
  // Cadastro via Services
-  async confirmarCadastro(email, senha) {
-     try {
-          cadastrar()
-     } catch(error) {
+  async confirmarCadastro() {
+      const nome = this.cadastroForm.value.nome ?? ''; // o TS precisa saber que está tudo bem caso vier um "Undefined" nos campos
+      const email = this.cadastroForm.value.email ?? ''; //Por isso atribuimos os var do formGroup aqui 
+      const senha = this.cadastroForm.value.senha ?? ''; // Não pode ser feito anteriormente se não perderemos os valores colocados
 
-     }
+       try {
+            const userInfo = await this.auth.cadastrar(email, senha) // armazena a resposta do firebase (uid, senha, email..)
+            await this.createUser.criarUserProfile(userInfo.user.uid,{
+               uid: userInfo.user.uid, 
+               name: nome,
+               email: email,
+               profilePic: '',
+            });
 
-    this.router.navigate(['/tabs/home']);
+            this.router.navigate(['/tabs/home']);
+       } catch (error: any) { // pode ser qualquer tipo: string, numero...
+          this.erroGeral = error.message;
+       }
   }
 
   loginComGoogle() {
