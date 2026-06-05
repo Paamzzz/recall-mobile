@@ -2,13 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { NgIf } from '@angular/common';
 import {
   IonContent,
-  IonButton,
-  IonTabBar,
-  IonFooter,
-  IonTabButton,
   IonIcon,
   IonLabel,
-  IonToolbar,
   IonItem,
   IonList,
   IonMenu,
@@ -48,12 +43,8 @@ import { Deck } from 'src/app/interfaces/deck';
     IonList,
     IonItem,
     IonContent,
-    IonTabBar,
-    IonFooter,
-    IonTabButton,
     IonIcon,
     IonLabel,
-    IonToolbar,
     IonMenu,
     NgIf,
     RouterLink

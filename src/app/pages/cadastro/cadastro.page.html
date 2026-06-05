@@ -19,16 +19,16 @@
     </div>
 
     <!-- Form -->
-    <form>
+    <form (ngSubmit)="confirmarCadastro()" [formGroup]="cadastroForm">
 
       <div class="input-group">
         <label>Primeiro nome</label>
-        <ion-input fill="outline"></ion-input>
+        <ion-input fill="outline" formControlName="nome"> <!--se referencia ao formGroup criado--></ion-input>
       </div>
 
       <div class="input-group">
         <label>E-mail</label>
-        <ion-input type="email" fill="outline"></ion-input>
+        <ion-input type="email" fill="outline"  formControlName="email"> <!--se referencia ao formGroup criado-->></ion-input>
       </div>
 
       <div class="input-group">
@@ -37,7 +37,8 @@
         <div class="senha-box">
           <ion-input
             [type]="mostrarSenha ? 'text' : 'password'"
-            fill="outline">
+            fill="outline"
+             formControlName="senha"> <!--se referencia ao formGroup criado-->
           </ion-input>
 
           <ion-icon
@@ -62,9 +63,9 @@
           </ion-icon>
         </div>
       </div>
-
+      <p class="errorMessage" *ngIf="erroGeral">{{ erroGeral }}</p>
       <!-- Botão -->
-      <ion-button expand="block" class="btn-cadastro" (click)="confirmarCadastro()">
+      <ion-button expand="block" class="btn-cadastro" type="submit"> <!-- Executa função do form-->
         Confirmar cadastro
       </ion-button>
 
@@ -72,7 +73,7 @@
       <div class="ou">OU</div>
 
       <!-- Google -->
-      <button type="button" class="google-btn"  (click)="loginComGoogle()">
+      <button type="button" class="google-btn"  (click)="cadastrarComGoogle()">
         <img
           src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
           alt="Google">

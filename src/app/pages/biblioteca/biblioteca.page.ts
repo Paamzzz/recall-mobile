@@ -1,14 +1,10 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import {
   IonContent,
-  IonFooter,
-  IonToolbar,
-  IonTabBar,
-  IonTabButton,
   IonIcon,
   IonLabel,
   IonMenu,
@@ -28,7 +24,8 @@ import {
   documentTextOutline,
   timeOutline,
   informationCircleOutline,
-  logoGithub
+  logoGithub,
+  logOutOutline
 } from 'ionicons/icons';
 
 @Component({
@@ -38,10 +35,6 @@ import {
   standalone: true,
   imports: [
     IonContent,
-    IonFooter,
-    IonToolbar,
-    IonTabBar,
-    IonTabButton,
     IonIcon,
     IonLabel,
     IonMenu,
@@ -55,7 +48,8 @@ import {
 export class BibliotecaPage {
 
   constructor(
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private router: Router
   ) {
 
     addIcons({
@@ -67,7 +61,8 @@ export class BibliotecaPage {
       documentTextOutline,
       timeOutline,
       informationCircleOutline,
-      logoGithub
+      logoGithub,
+      logOutOutline
     });
 
   }
@@ -81,6 +76,14 @@ export class BibliotecaPage {
       'https://github.com/Paamzzz/recall-mobile',
       '_blank'
     );
+  }
+
+  logout() {
+    // limpa login
+    localStorage.clear();
+
+    // redireciona para login
+    this.router.navigate(['/login']);
   }
 
 }

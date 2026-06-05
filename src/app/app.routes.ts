@@ -36,7 +36,7 @@ export const routes: Routes = [
                },
                {
                     path: 'trilha',
-                    loadComponent: () => import('./pages/trilha/trilha.page').then(m => m.TrilhaPage),
+                    loadComponent: () => import('./pages/biblioteca/biblioteca.page').then( m => m.BibliotecaPage)
                },
                {
                     path: 'sobre',
