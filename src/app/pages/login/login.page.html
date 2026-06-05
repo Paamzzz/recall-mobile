@@ -24,7 +24,9 @@
         <label>E-mail</label>
         <ion-input
           type="email"
-          fill="outline">
+          fill="outline"
+          [(ngModel)]="email"
+          name="email">
         </ion-input>
       </div>
 
@@ -35,7 +37,9 @@
         <div class="senha-box">
           <ion-input
             [type]="mostrarSenha ? 'text' : 'password'"
-            fill="outline">
+            fill="outline"
+            [(ngModel)]="senha"
+            name="senha">
           </ion-input>
 
           <ion-icon
