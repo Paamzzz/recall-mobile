@@ -99,6 +99,7 @@ export class CadastroPage {
                await this.auth.entrarComGoogle()  // está função toma conta de tudo
                this.router.navigate(['/tabs/home'])
           } catch (error: any) {
+               console.error('erro google:', error);
                this.erroGeral = error.message;
           }
      }

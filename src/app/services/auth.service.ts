@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, runInInjectionContext, Injector } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, signOut, user, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
 import { firstValueFrom } from 'rxjs'; // pega apenas o primeiro valor do Observable e transforma em um Promise
 import { UserService } from '../services/user.service'
@@ -10,6 +10,7 @@ import { UserService } from '../services/user.service'
 export class AuthService {
      private auth = inject(Auth); // instancia do firebase
      private servicoUser = inject(UserService); // -> user.service.ts
+     private injector = inject(Injector);
 
      cadastrar(email: string, senha: string) {
           return createUserWithEmailAndPassword(this.auth, email, senha);
@@ -19,20 +20,28 @@ export class AuthService {
           return signInWithEmailAndPassword(this.auth, email, senha)
      }
 
-     async entrarComGoogle() { //serve tanto para login, tanto para cadastro
-          const provider = new GoogleAuthProvider(); // google autentica, não o firebase
-          const resultado = await signInWithPopup(this.auth, provider) // tem todas as info do user
-          const uid = resultado.user.uid; //pega apenas o uid do user que a var 'resultado' trouxe
-          const usuario = await firstValueFrom(this.servicoUser.pegarUserProfile(uid)); // pega o uid especificado anteriormente no firestore
+     async entrarComGoogle() {
+          const provider = new GoogleAuthProvider();
+          console.log('1 - antes do popup');
+          const resultado = await runInInjectionContext(this.injector, () =>
+               signInWithPopup(this.auth, provider)
+          );
 
-          if (usuario === undefined) {
+            console.log('2 - depois do popup', resultado.user.uid);
+
+          const uid = resultado.user.uid;
+          const usuario = await firstValueFrom(this.servicoUser.pegarUserProfile(uid));
+           console.log('3 - usuario no firestore', usuario);
+
+          if (!usuario?.uid) {
+                console.log('4 - criando perfil');
                this.servicoUser.criarUserProfile(uid, {
                     uid: uid,
-                    name: resultado.user.displayName || '', //na interface EXIGE string, então para evitar erro colocamos o || ''
-                    email: resultado.user.email || '', // é como se fosse: se retornar um valor, perfeito! Se não, volte uma string vazia
+                    name: resultado.user.displayName || '',
+                    email: resultado.user.email || '',
                     profilePic: ''
                });
-          } 
+          }
      }
 
 
@@ -40,5 +49,5 @@ export class AuthService {
           return signOut(this.auth)
      }
 
-     usuarioAtual$ = user(this.auth);
+     usuarioAtual$ = user(inject(Auth));
 }
