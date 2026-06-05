@@ -63,7 +63,7 @@ export class LoginPage {
       // Chama a função entrar do auth.service.ts
       await this.authService.entrar(this.email, this.senha);
       console.log('Login efetuado com sucesso!');
-      this.router.navigate(['/home']);
+      this.router.navigate(['/tabs/home']);
     } catch (error) {
       console.error('Erro ao fazer login:', error);
       alert('E-mail ou senha incorretos. Tente novamente!');
@@ -73,7 +73,7 @@ export class LoginPage {
   async loginComGoogle() {
     try {
       await this.authService.entrarComGoogle();
-      this.router.navigate(['/home']);
+      this.router.navigate(['/tabs/home']);
 
     } catch (error) {
       console.error('Erro no login com Google:', error);
