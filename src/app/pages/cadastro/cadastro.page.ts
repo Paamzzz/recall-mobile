@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { inject } from '@angular/core';
 
 import { AuthService } from 'src/app/services/auth.service';
@@ -25,7 +25,7 @@ import { eyeOutline, eyeOffOutline } from 'ionicons/icons';
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
+    ReactiveFormsModule,
     RouterModule,
     IonContent,
     IonButton,
@@ -37,6 +37,9 @@ export class CadastroPage {
 
   mostrarSenha = false;
   mostrarRepetirSenha = false;
+
+  private auth = inject(AuthService);
+  private createUser = inject(UserService);
 
   constructor(private router: Router) {
 
@@ -56,12 +59,15 @@ export class CadastroPage {
   }
 
 
+ // Cadastro via Services
+  async confirmarCadastro(email, senha) {
+     try {
+          cadastrar()
+     } catch(error) {
 
-  confirmarCadastro() {
+     }
 
-    // futuramente aqui vai salvar no banco
-
-    this.router.navigate(['/login']);
+    this.router.navigate(['/tabs/home']);
   }
 
   loginComGoogle() {
