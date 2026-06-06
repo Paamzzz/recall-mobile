@@ -122,11 +122,11 @@ ion-content {
 
 .progress-fill {
   width: 0;
-  height: 100%;
-
-  background: #5d5cff;
+  height: 100%; 
+  background: linear-gradient(to right, #2c246e,#9b9bff); 
 
   border-radius: 999px;
+  transition: ease 0.3s;
 }
 
 /* ================= CONTADOR ================= */

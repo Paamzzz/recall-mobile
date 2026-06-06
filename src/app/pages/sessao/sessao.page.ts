@@ -72,9 +72,6 @@ export class SessaoPage {
         this.cardAtual = this.sessionService.pegarCardAtual();
         this.carregando = false;
 
-        console.log('cards:', this.cards);
-console.log('cardAtual:', this.cardAtual);
-console.log('deckAtual:', this.deckAtual);
     } catch (error: any) {
         console.error('Erro ao carregar sessão:', error);
         this.carregando = false;

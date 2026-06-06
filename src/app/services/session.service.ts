@@ -5,78 +5,84 @@ import { Session } from '../interfaces/session';
 @Injectable({ providedIn: 'root' })
 export class SessionService {
 
-     private session: Session = { // inicializar o molde do 0
-          currentCard: 0,
-          allCards: [],
-          correctCards: [],
-          wrongCards: [],
-     };
+  private session: Session = {
+    currentCard: 0,
+    allCards: [],
+    correctCards: [],
+    wrongCards: [],
+  };
 
-     iniciarSessao(cards: Card[]) {
-          this.resetarSessao();
-          this.session.allCards = cards;
-     }
+  // Map que guarda a resposta mais recente de cada card: id -> 'certo' | 'errado'
+  private respostas: Map<string, 'certo' | 'errado'> = new Map();
 
-     resetarSessao() {
-          this.session = {
-               currentCard: 0,
-               allCards: [],
-               correctCards: [],
-               wrongCards: [],
-          }
-     }
+  iniciarSessao(cards: Card[]) {
+    this.resetarSessao();
+    this.session.allCards = cards;
+  }
 
-     pegarCardAtual() {
-          const posicao = this.session.currentCard; //pega o index do card atual
-          return this.session.allCards[posicao]; // pega o card que possui o mesmo index pego acima
-     }
+  resetarSessao() {
+    this.session = {
+      currentCard: 0,
+      allCards: [],
+      correctCards: [],
+      wrongCards: [],
+    };
+    this.respostas = new Map();
+  }
 
-     responderCard(resposta: 'certo' | 'errado') {
-          const cardAtual = this.pegarCardAtual();
+  pegarCardAtual() {
+    return this.session.allCards[this.session.currentCard];
+  }
 
-          if (resposta === 'certo') {
-               this.session.correctCards.push(cardAtual);
-          } else if (resposta === 'errado') {
-               this.session.wrongCards.push(cardAtual);
-          }
-          this.avancarCard(); // para mudar o card e prosseguir para o próximo
-     }
+  responderCard(resposta: 'certo' | 'errado') {
+    const cardAtual = this.pegarCardAtual();
+    this.respostas.set(cardAtual.id, resposta); // sobrescreve se já existia
+    this.avancarCard();
+  }
 
-     avancarCard() {
-          if (this.session.currentCard < this.session.allCards.length - 1) {
-               this.session.currentCard++;
-          }
-     }
+  avancarCard() {
+    if (this.session.currentCard < this.session.allCards.length - 1) {
+      this.session.currentCard++;
+    }
+  }
 
-     voltarCard() {
-          if (this.session.currentCard > 0) {
-               this.session.currentCard--;
-          }
-     }
+  voltarCard() {
+    if (this.session.currentCard > 0) {
+      this.session.currentCard--;
+    }
+  }
 
-     calcularProgresso() {
-          const progressoAtual = this.session.correctCards.length / this.session.allCards.length * 100;
-          return progressoAtual
-     }
+  calcularProgresso() {
+    // conta só os que foram respondidos como certo
+    let acertos = 0;
+    this.respostas.forEach(resposta => {
+      if (resposta === 'certo') acertos++;
+    });
+    return (acertos / this.session.allCards.length) * 100;
+  }
 
-     pegarIndiceAtual() {
-          return this.session.currentCard + 1; // +1 porque índice começa no 0
-     }
+  pegarIndiceAtual() {
+    return this.session.currentCard + 1;
+  }
 
-     finalizarSessao() {
-          // Descobre os cards que não foram respondidos
-          const cardsPulados = this.session.allCards.filter(card =>
-               !this.session.correctCards.some(c => c.id === card.id) &&
-               !this.session.wrongCards.some(c => c.id === card.id)
-          );
+  finalizarSessao() {
+    const correctCards: Card[] = [];
+    const wrongCards: Card[] = [];
 
-          const allCards = this.session.allCards.length;
-          const correctCards = this.session.correctCards;
-          const wrongCards = [...this.session.wrongCards, ...cardsPulados]; // junta errados + pulados
-          const progresso = this.calcularProgresso();
+    this.session.allCards.forEach(card => {
+      const resposta = this.respostas.get(card.id);
+      if (resposta === 'certo') {
+        correctCards.push(card);
+      } else {
+        wrongCards.push(card); // errado ou não respondido
+      }
+    });
 
-          this.resetarSessao();
+    const allCards = this.session.allCards.length;
+    const progresso = this.calcularProgresso();
 
-          return { allCards, correctCards, wrongCards, progresso };
-     }
+    this.resetarSessao();
+
+    return { allCards, correctCards, wrongCards, progresso };
+  }
 }
