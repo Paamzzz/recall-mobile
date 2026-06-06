@@ -18,6 +18,12 @@ import { DeckService } from 'src/app/services/deck.service';
 import { Card } from 'src/app/interfaces/card';
 import { Deck } from 'src/app/interfaces/deck';
 
+import {
+  Haptics,
+  ImpactStyle,
+  NotificationType
+} from '@capacitor/haptics';
+
 @Component({
   selector: 'app-sessao',
   standalone: true,
@@ -27,6 +33,26 @@ import { Deck } from 'src/app/interfaces/deck';
 })
 export class SessaoPage {
 
+// Sons e efeitos sonoros
+  async vibrar() {
+    await Haptics.impact({
+      style: ImpactStyle.Light
+    });
+  }
+
+  answerAudio = new Audio('assets/audio/answer.wav');
+  clickAudio = new Audio('assets/audio/click.wav');
+  
+    tocarAnswer() {
+      this.answerAudio.currentTime = 0;
+      this.answerAudio.play();
+    }
+    tocarClick() {
+     this.clickAudio.currentTime = 0;
+     this.clickAudio.play()
+    }
+
+ // Para os serviços e conexões 
   deckId: string = '';
   deckAtual: Deck | null = null;       // informações do deck (nome, descrição)
   progressoAtual: number | null = null;
@@ -89,6 +115,7 @@ export class SessaoPage {
     this.carregarProgresso();
     this.cardAtual = this.sessionService.pegarCardAtual();
     this.isFlipped = false;
+    this.tocarClick()
   }
 
   // atualiza a barra de progresso com o valor do service
@@ -109,6 +136,7 @@ export class SessaoPage {
     this.sessionService.avancarCard();
     this.cardAtual = this.sessionService.pegarCardAtual();
     this.isFlipped = false;
+    this.tocarAnswer();
   }
 
   // volta para o card anterior
@@ -116,10 +144,13 @@ export class SessaoPage {
     this.sessionService.voltarCard();
     this.cardAtual = this.sessionService.pegarCardAtual();
     this.isFlipped = false;
+    this.tocarAnswer();
   }
 
   // vira o card para mostrar frente ou verso
   flipCard() {
     this.isFlipped = !this.isFlipped;
+    this.tocarAnswer()
+    this.vibrar()
   }
 }
