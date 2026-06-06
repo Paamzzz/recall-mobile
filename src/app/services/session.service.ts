@@ -10,7 +10,6 @@ export class SessionService {
           allCards: [],
           correctCards: [],
           wrongCards: [],
-          skippedCards: []
      };
 
      iniciarSessao(cards: Card[]) {
@@ -24,7 +23,6 @@ export class SessionService {
                allCards: [],
                correctCards: [],
                wrongCards: [],
-               skippedCards: []
           }
      }
 
@@ -33,17 +31,14 @@ export class SessionService {
           return this.session.allCards[posicao]; // pega o card que possui o mesmo index pego acima
      }
 
-     responderCard(resposta: 'certo' | 'errado' | 'pulado') {
+     responderCard(resposta: 'certo' | 'errado') {
           const cardAtual = this.pegarCardAtual();
 
           if (resposta === 'certo') {
                this.session.correctCards.push(cardAtual);
           } else if (resposta === 'errado') {
                this.session.wrongCards.push(cardAtual);
-          } else {
-               this.session.skippedCards.push(cardAtual)
-          }
-
+          } 
           this.session.currentCard++ // para mudar o card e prosseguir para o próximo
      }
 
@@ -61,19 +56,19 @@ export class SessionService {
      }
 
      finalizarSessao() {
-          // precisa ser salvo em var, se não a função apaga antes de retornar
-          const allCards = this.session.allCards.length;
-          const correctCards = this.session.correctCards;
-          const wrongCards = this.session.wrongCards;
-          const progresso = this.calcularProgresso();
+    // Descobre os cards que não foram respondidos
+    const cardsPulados = this.session.allCards.filter(card => 
+        !this.session.correctCards.some(c => c.id === card.id) &&
+        !this.session.wrongCards.some(c => c.id === card.id)
+    );
 
-          this.resetarSessao();
+    const allCards = this.session.allCards.length;
+    const correctCards = this.session.correctCards;
+    const wrongCards = [...this.session.wrongCards, ...cardsPulados]; // junta errados + pulados
+    const progresso = this.calcularProgresso();
 
-          return { // Está se referenciando as variaveis criadas NESTA função
-               allCards,
-               correctCards,
-               wrongCards,
-               progresso
-          }
-     }
+    this.resetarSessao();
+
+    return { allCards, correctCards, wrongCards, progresso };
+}
 }

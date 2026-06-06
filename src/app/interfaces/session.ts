@@ -5,5 +5,4 @@ export interface Session {
      allCards: Card[],
      correctCards: Card[];
      wrongCards: Card[];
-     skippedCards: Card[];
 }

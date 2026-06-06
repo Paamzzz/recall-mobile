@@ -27,6 +27,8 @@ import { Card } from 'src/app/interfaces/card';
 export class SessaoPage {
 
   deckId: string = '';
+  progressoAtual: number | null = null;
+  resultadoFinal : any = null;
   cardAtual: Card | null = null ; //ei TypeScript, eu sei que isso pode ficar vazio em algum momento, tudo bem
   cards: Card[] = [];
   isFlipped = false;
@@ -58,6 +60,7 @@ export class SessaoPage {
     }
   }
 
+  // Inicio ao carregar a tela
  async carregarCards() {
      this.carregando = true;
      try {
@@ -70,6 +73,41 @@ export class SessaoPage {
           this.carregando = false;
      }
 }
+
+// Para pegar as respostas e estados
+ async respostaCard(resposta: 'certo' | 'errado') {
+     this.sessionService.responderCard(resposta);
+     this.carregarProgresso();
+     this.cardAtual = this.sessionService.pegarCardAtual();
+     this.isFlipped = false;
+ }
+
+ // Calcular o progresso em tempo real
+ carregarProgresso() {
+          this.progressoAtual = this.sessionService.calcularProgresso();
+ }
+
+// Finalizar a sessão e ir para a página "resultado"
+  encerrarSessao() {
+           this.resultadoFinal = this.sessionService.finalizarSessao();
+           this.router.navigate(['/resultado'], {
+               state: { resultado: this.resultadoFinal }
+           });
+ }
+
+ // Navegação entre cards
+ proximoCard() {
+     this.sessionService.avancarCard();
+     this.cardAtual = this.sessionService.pegarCardAtual();
+     this.isFlipped = false;
+ }
+
+ anteriorCard() {
+     this.sessionService.voltarCard();
+     this.cardAtual = this.sessionService.pegarCardAtual();
+     this.isFlipped = false;
+ }
+
 
   flipCard() {
     this.isFlipped = !this.isFlipped;
