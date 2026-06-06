@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { addIcons } from 'ionicons';
 import {
@@ -9,14 +9,15 @@ import {
   checkmarkOutline, closeOutline, happyOutline
 } from 'ionicons/icons';
 
-// Transformar retornos em Promises
-import { firstValueFrom  } from 'rxjs';
+import { firstValueFrom } from 'rxjs';
 
-//Importando serviços e interface Card
 import { SessionService } from 'src/app/services/session.service';
 import { ProgressService } from 'src/app/services/progress.service';
 import { CardService } from 'src/app/services/card.service';
+import { DeckService } from 'src/app/services/deck.service';
 import { Card } from 'src/app/interfaces/card';
+import { Deck } from 'src/app/interfaces/deck';
+
 @Component({
   selector: 'app-sessao',
   standalone: true,
@@ -27,88 +28,100 @@ import { Card } from 'src/app/interfaces/card';
 export class SessaoPage {
 
   deckId: string = '';
+  deckAtual: Deck | null = null;       // informações do deck (nome, descrição)
   progressoAtual: number | null = null;
-  resultadoFinal : any = null;
-  cardAtual: Card | null = null ; //ei TypeScript, eu sei que isso pode ficar vazio em algum momento, tudo bem
-  cards: Card[] = [];
-  isFlipped = false;
-  carregando = true; 
+  resultadoFinal: any = null;
+  cardAtual: Card | null = null;       // card sendo exibido no momento
+  cards: Card[] = [];                  // todos os cards do deck
+  isFlipped = false;                   // controla se o card está virado
+  carregando = true;
 
   private router = inject(Router);
+  private route = inject(ActivatedRoute); 
   private cardService = inject(CardService);
+  private deckService = inject(DeckService);
   private progressService = inject(ProgressService);
   private sessionService = inject(SessionService);
-
-  ngOnInit() {
-     this.carregarCards();
-  }
 
   constructor() {
     addIcons({
       arrowBackOutline, arrowForwardOutline,
       checkmarkOutline, closeOutline, happyOutline
     });
-
-    // getCurrentNavigation() pega os dados que vieram no navigate()
-    // só funciona dentro do constructor, por isso está aqui
-    const nav = this.router.getCurrentNavigation();
-    const state = nav?.extras?.state;
-
-    if (state?.['deckId']) {
-      this.deckId = state['deckId'];
-      console.log('Deck recebido:', this.deckId); // para confirmar que chegou
-    }
   }
 
-  // Inicio ao carregar a tela
- async carregarCards() {
-     this.carregando = true;
-     try {
-          this.cards = await firstValueFrom(this.cardService.pegarCardsPeloDeck(this.deckId));
-          this.sessionService.iniciarSessao(this.cards);
-          this.cardAtual = this.sessionService.pegarCardAtual();
-          this.carregando = false;
-     } catch (error: any) {
-          console.error('Erro ao carregar decks:', error);
-          this.carregando = false;
-     }
+  ngOnInit() {
+    const state = history.state; // salva no browser e persis
+    if (state?.deckId) {
+      this.deckId = state.deckId;
+      console.log('Deck recebido:', this.deckId);
+    }
+
+    this.carregarCards();
+  }
+
+  // Busca os cards e o deck, inicializa a sessão
+  async carregarCards() {
+    this.carregando = true;
+    try {
+        this.cards = await firstValueFrom(this.cardService.pegarCardsPeloDeck(this.deckId));
+        const decks = await firstValueFrom(this.deckService.pegarDecks());
+        this.deckAtual = decks.find(d => d.id === this.deckId) ?? null;
+
+        this.sessionService.iniciarSessao(this.cards);
+        this.cardAtual = this.sessionService.pegarCardAtual();
+        this.carregando = false;
+
+        console.log('cards:', this.cards);
+console.log('cardAtual:', this.cardAtual);
+console.log('deckAtual:', this.deckAtual);
+    } catch (error: any) {
+        console.error('Erro ao carregar sessão:', error);
+        this.carregando = false;
+    }
 }
 
-// Para pegar as respostas e estados
- async respostaCard(resposta: 'certo' | 'errado') {
-     this.sessionService.responderCard(resposta);
-     this.carregarProgresso();
-     this.cardAtual = this.sessionService.pegarCardAtual();
-     this.isFlipped = false;
- }
+  // getter para exibir a posição atual no contador (começa em 1, não 0)
+  get indiceAtual(): number {
+    return this.sessionService.pegarIndiceAtual();
+  }
 
- // Calcular o progresso em tempo real
- carregarProgresso() {
-          this.progressoAtual = this.sessionService.calcularProgresso();
- }
+  // registra a resposta, atualiza progresso e avança para o próximo card
+  async respostaCard(resposta: 'certo' | 'errado') {
+    this.sessionService.responderCard(resposta);
+    this.carregarProgresso();
+    this.cardAtual = this.sessionService.pegarCardAtual();
+    this.isFlipped = false;
+  }
 
-// Finalizar a sessão e ir para a página "resultado"
+  // atualiza a barra de progresso com o valor do service
+  carregarProgresso() {
+    this.progressoAtual = this.sessionService.calcularProgresso();
+  }
+
+  // finaliza a sessão e navega para a tela de resultado com os dados
   encerrarSessao() {
-           this.resultadoFinal = this.sessionService.finalizarSessao();
-           this.router.navigate(['/resultado'], {
-               state: { resultado: this.resultadoFinal }
-           });
- }
+    this.resultadoFinal = this.sessionService.finalizarSessao();
+    this.router.navigate(['/resultado'], {
+      state: { resultado: this.resultadoFinal }
+    });
+  }
 
- // Navegação entre cards
- proximoCard() {
-     this.sessionService.avancarCard();
-     this.cardAtual = this.sessionService.pegarCardAtual();
-     this.isFlipped = false;
- }
+  // avança para o próximo card sem registrar resposta
+  proximoCard() {
+    this.sessionService.avancarCard();
+    this.cardAtual = this.sessionService.pegarCardAtual();
+    this.isFlipped = false;
+  }
 
- anteriorCard() {
-     this.sessionService.voltarCard();
-     this.cardAtual = this.sessionService.pegarCardAtual();
-     this.isFlipped = false;
- }
+  // volta para o card anterior
+  anteriorCard() {
+    this.sessionService.voltarCard();
+    this.cardAtual = this.sessionService.pegarCardAtual();
+    this.isFlipped = false;
+  }
 
-
+  // vira o card para mostrar frente ou verso
   flipCard() {
     this.isFlipped = !this.isFlipped;
   }

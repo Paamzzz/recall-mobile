@@ -38,16 +38,20 @@ export class SessionService {
                this.session.correctCards.push(cardAtual);
           } else if (resposta === 'errado') {
                this.session.wrongCards.push(cardAtual);
-          } 
-          this.session.currentCard++ // para mudar o card e prosseguir para o próximo
+          }
+          this.avancarCard(); // para mudar o card e prosseguir para o próximo
      }
 
      avancarCard() {
-          this.session.currentCard++;
+          if (this.session.currentCard < this.session.allCards.length - 1) {
+               this.session.currentCard++;
+          }
      }
 
      voltarCard() {
-          this.session.currentCard--;
+          if (this.session.currentCard > 0) {
+               this.session.currentCard--;
+          }
      }
 
      calcularProgresso() {
@@ -55,20 +59,24 @@ export class SessionService {
           return progressoAtual
      }
 
+     pegarIndiceAtual() {
+          return this.session.currentCard + 1; // +1 porque índice começa no 0
+     }
+
      finalizarSessao() {
-    // Descobre os cards que não foram respondidos
-    const cardsPulados = this.session.allCards.filter(card => 
-        !this.session.correctCards.some(c => c.id === card.id) &&
-        !this.session.wrongCards.some(c => c.id === card.id)
-    );
+          // Descobre os cards que não foram respondidos
+          const cardsPulados = this.session.allCards.filter(card =>
+               !this.session.correctCards.some(c => c.id === card.id) &&
+               !this.session.wrongCards.some(c => c.id === card.id)
+          );
 
-    const allCards = this.session.allCards.length;
-    const correctCards = this.session.correctCards;
-    const wrongCards = [...this.session.wrongCards, ...cardsPulados]; // junta errados + pulados
-    const progresso = this.calcularProgresso();
+          const allCards = this.session.allCards.length;
+          const correctCards = this.session.correctCards;
+          const wrongCards = [...this.session.wrongCards, ...cardsPulados]; // junta errados + pulados
+          const progresso = this.calcularProgresso();
 
-    this.resetarSessao();
+          this.resetarSessao();
 
-    return { allCards, correctCards, wrongCards, progresso };
-}
+          return { allCards, correctCards, wrongCards, progresso };
+     }
 }
