@@ -27,6 +27,7 @@ import { Card } from 'src/app/interfaces/card';
 export class SessaoPage {
 
   deckId: string = '';
+  cardAtual: Card | null = null ; //ei TypeScript, eu sei que isso pode ficar vazio em algum momento, tudo bem
   cards: Card[] = [];
   isFlipped = false;
   carregando = true; 
@@ -35,6 +36,10 @@ export class SessaoPage {
   private cardService = inject(CardService);
   private progressService = inject(ProgressService);
   private sessionService = inject(SessionService);
+
+  ngOnInit() {
+     this.carregarCards();
+  }
 
   constructor() {
     addIcons({
@@ -53,10 +58,12 @@ export class SessaoPage {
     }
   }
 
- async mostrarCard() {
+ async carregarCards() {
      this.carregando = true;
      try {
           this.cards = await firstValueFrom(this.cardService.pegarCardsPeloDeck(this.deckId));
+          this.sessionService.iniciarSessao(this.cards);
+          this.cardAtual = this.sessionService.pegarCardAtual();
           this.carregando = false;
      } catch (error: any) {
           console.error('Erro ao carregar decks:', error);
