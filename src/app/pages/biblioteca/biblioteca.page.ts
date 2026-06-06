@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -14,6 +14,10 @@ import {
 } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
+
+// Import de services
+import { Deck } from '../../interfaces/deck';
+import { DeckService } from 'src/app/services/deck.service';
 
 import {
   homeOutline,
@@ -47,6 +51,13 @@ import {
 })
 export class BibliotecaPage {
 
+  // objetos que utilizarei nos serviços
+  decks: Deck[] = [];
+  carregando = true;
+
+  // serviços na qual vou utilizar
+  private deckService = inject(DeckService);
+     
   constructor(
     private menuCtrl: MenuController,
     private router: Router
@@ -65,6 +76,32 @@ export class BibliotecaPage {
       logOutOutline
     });
 
+  }
+ 
+  // Toda vez que voltamos para esta tela irá carregar novamente
+  ionViewWillEnter() {
+     this.carregarDeck()
+  }
+//? por que não usa async?
+   carregarDeck() {
+     this.carregando = true;
+
+     //? o que é subscribe()? 
+     this.deckService.pegarDecks().subscribe({
+          next: (decks) => {
+               this.decks = decks;
+               this.carregando = false;
+          }, error: (error) => {
+               console.error('Erro ao carregar decks:', error);
+               this.carregando = false;
+          }
+     });
+  }
+  
+  abrirSessao(deck: Deck) {
+     this.router.navigate(['/sessao'], { // usar 'navigate()' faz com que não fique na url:'localhost/sessao/123644'
+          state: { deckId: deck.id } // precisamos manter na navegação o id
+     });
   }
 
   async openMenu() {
