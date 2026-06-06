@@ -98,131 +98,31 @@
 
   </div>
 
-  <!-- CARD 1 -->
-  <div class="library-card purple">
-
-    <div class="stack-card stack-1"></div>
-    <div class="stack-card stack-2"></div>
-    <div class="stack-card stack-3"></div>
-    <div class="stack-card stack-4"></div>
-
-    <div class="card-body">
-
-      <div class="top-row">
-
-        <div>
-          <h2>Entrevista Frontend</h2>
-
-          <p class="subtitle">
-            Frontend Developer - React & TypeScript
-          </p>
-        </div>
-
-        <span class="status blue">
-          Pleno
-        </span>
-
-      </div>
-
-      <div class="tags">
-
-        <div class="tag-item">
-          <ion-icon name="document-text-outline"></ion-icon>
-          <span>15 cards</span>
-        </div>
-
-        <div class="tag-item">
-          <ion-icon name="time-outline"></ion-icon>
-          <span>Hoje</span>
-        </div>
-
-        <span class="tag-pill purple-pill">
-          Técnica
-        </span>
-
-      </div>
-
-      <div class="progress-area">
-
-        <div class="progress-top">
-          <span>Progresso</span>
-          <span>10/15</span>
-        </div>
-
-        <div class="progress-bar">
-          <div class="progress purple-progress"></div>
-        </div>
-
-      </div>
-
-    </div>
-
+ <!-- LOADING -->
+  <div *ngIf="carregando" class="estado-info">
+     <div class="dot-spinner">
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+</div>
   </div>
 
-  <!-- CARD 2 -->
-  <div class="library-card orange">
-
-    <div class="stack-card stack-1"></div>
-    <div class="stack-card stack-2"></div>
-    <div class="stack-card stack-3"></div>
-    <div class="stack-card stack-4"></div>
-
-    <div class="card-body">
-
-      <div class="top-row">
-
-        <div>
-          <h2>Soft Skills & Comportamental</h2>
-
-          <p class="subtitle">
-            Qualquer cargo - Habilidades interpessoais
-          </p>
-        </div>
-
-        <span class="status purple-status">
-          Sênior
-        </span>
-
-      </div>
-
-      <div class="tags">
-
-        <div class="tag-item">
-          <ion-icon name="document-text-outline"></ion-icon>
-          <span>15 cards</span>
-        </div>
-
-        <div class="tag-item">
-          <ion-icon name="time-outline"></ion-icon>
-          <span>Hoje</span>
-        </div>
-
-        <span class="tag-pill orange-pill">
-          Comportamental
-        </span>
-
-      </div>
-
-      <div class="progress-area">
-
-        <div class="progress-top">
-          <span>Progresso</span>
-          <span>10/15</span>
-        </div>
-
-        <div class="progress-bar">
-          <div class="progress orange-progress"></div>
-        </div>
-
-      </div>
-
-    </div>
-
+  <!-- LISTA VAZIA -->
+  <div *ngIf="!carregando && decks.length === 0" class="estado-info">
+     <p>Nenhum deck encontrado</p>
   </div>
 
-  <!-- CARD 3 -->
-  <div class="library-card purple">
-
+  <!-- LISTA DE DECKS -->
+  <div
+    *ngFor="let deck of decks"
+    class="library-card {{ corDoCard(deck.type) }}"
+    (click)="abrirSessao(deck)"
+  >
     <div class="stack-card stack-1"></div>
     <div class="stack-card stack-2"></div>
     <div class="stack-card stack-3"></div>
@@ -231,54 +131,41 @@
     <div class="card-body">
 
       <div class="top-row">
-
         <div>
-          <h2>Entrevista Frontend</h2>
-
-          <p class="subtitle">
-            Frontend Developer - React & TypeScript
-          </p>
+          <h2>{{ deck.name }}</h2>
+          <p class="subtitle">{{ deck.description }}</p>
         </div>
-
-        <span class="status cyan">
-          Junior
+        <!-- corDaSenioridade() decide a classe CSS dinamicamente -->
+        <span class="status {{ corDaSenioridade(deck.seniority) }}">
+          {{ deck.seniority | titlecase }}
         </span>
-
       </div>
 
       <div class="tags">
-
         <div class="tag-item">
-          <ion-icon name="document-text-outline"></ion-icon>
-          <span>15 cards</span>
+          <ion-icon name="albums-outline"></ion-icon>
+          <span>{{ deck.totalCards }} cards</span>
         </div>
-
-        <div class="tag-item">
-          <ion-icon name="time-outline"></ion-icon>
-          <span>Hoje</span>
-        </div>
-
-        <span class="tag-pill purple-pill">
-          Técnica
+        <!-- pill muda de cor junto com o card -->
+        <span class="tag-pill {{ corDoCard(deck.type) }}-pill">
+          {{ deck.type | titlecase }}
         </span>
-
       </div>
 
       <div class="progress-area">
-
         <div class="progress-top">
           <span>Progresso</span>
-          <span>10/15</span>
+          <span>{{ deck.lastResult }}/{{ deck.totalCards }}</span>
         </div>
-
         <div class="progress-bar">
-          <div class="progress purple-progress"></div>
+          <div
+            class="progress {{ corDoCard(deck.type) }}-progress"
+            [style.width.%]="(deck.lastResult / deck.totalCards) * 100"
+          ></div>
         </div>
-
       </div>
 
     </div>
-
   </div>
 
 </ion-content>
