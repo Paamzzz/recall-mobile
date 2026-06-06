@@ -97,12 +97,26 @@ export class BibliotecaPage {
           }
      });
   }
+
   
   abrirSessao(deck: Deck) {
-     this.router.navigate(['/sessao'], { // usar 'navigate()' faz com que não fique na url:'localhost/sessao/123644'
+       this.router.navigate(['/sessao'], { // usar 'navigate()' faz com que não fique na url:'localhost/sessao/123644'
           state: { deckId: deck.id } // precisamos manter na navegação o id
      });
-  }
+}
+// Cores de tags e dos decks
+corDoCard(tipo: string): string {
+  return tipo === 'tecnico' ? 'purple' : 'orange';
+}
+
+corDaSenioridade(seniority: string): string {
+  const cores: Record<string, string> = {
+    junior: 'cyan',
+    pleno: 'blue',
+    senior: 'purple-status'
+  };
+  return cores[seniority] ?? 'blue';
+}
 
   async openMenu() {
     await this.menuCtrl.open('main-menu');
