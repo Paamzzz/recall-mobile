@@ -148,8 +148,12 @@ export class BibliotecaPage {
     window.open('https://github.com/Paamzzz/recall-mobile', '_blank');
   }
 
-  logout() {
-    localStorage.clear();
-    this.router.navigate(['/login']);
-  }
+     async logout() {
+          try {
+               await this.authService.sair()
+               this.router.navigate(['/splash']);
+          } catch (error: any) {
+               console.error('Erro ao desconectar')
+          }
+     }
 }
