@@ -83,8 +83,8 @@ export class GroqService {
           na qual tem como descrição: ${descricaoTrilha} e possui o nivel de ${senioridade}. 
           Foi marcado como "acertado" as peguntas: ${acertos}.
           
-          Diante disso, faça um feedback sobre "Você foi bom em". Faça ele de forma objetiva, coerente e didática.
-          Não se extenda demais e não repita o titulo.` 
+          Diante disso, faça um feedback sobre "Você foi bom em". Faça ele de forma objetiva, coerente e didática. Não coloque caracteres
+          especiais como "**". Dê uma resposta de até 300 caracteres. Não repita "Você foi bom em..."` 
           //O prompt é grande para dar o feedback mais personalizavel possível ao usuário
 
           return await this.chamarIA(prompt);
@@ -102,8 +102,8 @@ export class GroqService {
           na qual tem como descrição: ${descricaoTrilha} e possui o nivel de ${senioridade}. 
           Foi marcado como "errado" as peguntas: ${erros}.
           
-           Diante disso, faça um feedback sobre "Pontos a melhorar". Faça ele de forma objetiva, coerente e didática.
-          Não se extenda demais e não repita o titulo.` 
+           Diante disso, faça um feedback sobre "Pontos a melhorar". Faça ele de forma objetiva, coerente e didática. Não coloque caracteres
+           especiais como "**". Dê uma resposta de até 300 caracteres. Não repita: "Pontos a melhorar..."` 
           //O prompt é grande para dar o feedback mais personalizavel possível ao usuário
 
           return await this.chamarIA(prompt);
