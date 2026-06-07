@@ -127,7 +127,7 @@ export class SessaoPage {
   encerrarSessao() {
     this.resultadoFinal = this.sessionService.finalizarSessao();
     this.router.navigate(['/resultado'], {
-      state: { resultado: this.resultadoFinal }
+      state: { resultado: this.resultadoFinal, deckId: this.deckId }
     });
   }
 

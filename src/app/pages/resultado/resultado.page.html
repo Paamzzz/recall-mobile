@@ -3,90 +3,85 @@
   <!-- HERO CARD COM VÍDEO -->
   <div class="hero-card">
 
-  <video
-    class="hero-video"
-    autoplay
-    muted
-    loop
-    playsinline>
-    <source src="assets/video/gradient-mesh.mp4" type="video/mp4">
-  </video>
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline>
+      <source src="assets/video/gradient-mesh.mp4" type="video/mp4">
+    </video>
 
-  <div class="hero-overlay"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-shape"></div>
 
-  <div class="hero-shape"></div>
+    <div class="hero-content">
 
-  <div class="hero-content">
+      <div class="icon-circle">
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
 
-    <div class="icon-circle">
-      <ion-icon name="star-outline"></ion-icon>
+      <h1>{{ titulo }}</h1>
+
+      <p class="subtitle">
+        {{ subtitulo }}
+      </p>
+
+      <div class="score">
+        {{ percentual }}%
+      </div>
+
+      <p class="answers">
+        {{ totalAcertos }} de {{ totalPerguntas }} respostas corretas
+      </p>
+
     </div>
-
-    <h1>{{ titulo }}</h1>
-
-    <p class="subtitle">
-      {{ subtitulo }}
-    </p>
-
-    <div class="score">
-      {{ percentual }}%
-    </div>
-
-    <p class="answers">
-      {{ acertos }} de {{ totalPerguntas }} respostas corretas
-    </p>
 
   </div>
-
-</div>
 
   <!-- FEEDBACK POSITIVO -->
- <div class="feedback-card success">
+  <div class="feedback-card success">
 
-  <ion-icon
-    class="sparkle"
-    name="sparkles">
-  </ion-icon>
+    <ion-icon class="sparkle" name="sparkles"></ion-icon>
 
-  <div class="feedback-header">
-
-    <div class="feedback-icon">
-      <ion-icon name="checkmark"></ion-icon>
+    <div class="feedback-header">
+      <div class="feedback-icon">
+        <ion-icon name="checkmark"></ion-icon>
+      </div>
+      <span>Você foi bom em...</span>
     </div>
 
-    <span>Você foi bom em...</span>
+    <!-- mostra loading enquanto a Groq ainda está respondendo -->
+    <p class="feedback-text" *ngIf="!carregandoFeedback">
+      {{ feedbackPositivo }}
+    </p>
+    <p class="feedback-text loading" *ngIf="carregandoFeedback">
+      Gerando feedback...
+    </p>
 
   </div>
-
-  <p class="feedback-text">
-    {{ pontosFortes }}
-  </p>
-
-</div>
 
   <!-- FEEDBACK MELHORIA -->
   <div class="feedback-card warning">
 
-  <ion-icon
-    class="sparkle"
-    name="sparkles">
-  </ion-icon>
+    <ion-icon class="sparkle" name="sparkles"></ion-icon>
 
-  <div class="feedback-header">
-
-    <div class="feedback-icon">
-      <ion-icon name="alert-circle"></ion-icon>
+    <div class="feedback-header">
+      <div class="feedback-icon">
+        <ion-icon name="alert-circle"></ion-icon>
+      </div>
+      <span>Para melhorar...</span>
     </div>
 
-    <span>Para melhorar...</span>
+    <!-- mostra loading enquanto a Groq ainda está respondendo -->
+    <p class="feedback-text" *ngIf="!carregandoFeedback">
+      {{ feedbackNegativo }}
+    </p>
+    <p class="feedback-text loading" *ngIf="carregandoFeedback">
+      Gerando feedback...
+    </p>
 
   </div>
-
-  <p class="feedback-text">
-    {{ pontosMelhoria }}
-  </p>
-
-</div>
 
   <!-- BOTÕES -->
   <div class="buttons-container">
@@ -95,9 +90,7 @@
       expand="block"
       class="repeat-btn"
       (click)="repetirDeck()">
-
       Repetir Deck
-
     </ion-button>
 
     <ion-button
@@ -105,9 +98,7 @@
       fill="outline"
       class="library-btn"
       (click)="voltarBiblioteca()">
-
       Voltar à biblioteca
-
     </ion-button>
 
   </div>
