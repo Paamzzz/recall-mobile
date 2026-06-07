@@ -19,6 +19,13 @@ import {
  
 import { Router } from '@angular/router';
  
+import {
+  Haptics,
+  ImpactStyle,
+  NotificationType
+} from '@capacitor/haptics';
+
+
 import { ProgressService } from 'src/app/services/progress.service';
 import { GroqService } from 'src/app/services/groq.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -40,6 +47,21 @@ import { Card } from 'src/app/interfaces/card';
 })
 export class ResultadoPage implements OnInit {
  
+ // Vibrações e sons    
+async vibrar() {
+    await Haptics.notification({
+      type: NotificationType.Success
+    });
+  }
+
+  sucessAudio = new Audio('assets/audio/sucess.wav');
+  
+    tocarSucess() {
+      this.sucessAudio.currentTime = 0;
+      this.sucessAudio.play();
+    }
+
+
   // dados exibidos na tela
   deckId: string = '';
   percentual: number = 0;
@@ -69,7 +91,11 @@ export class ResultadoPage implements OnInit {
     const state = history.state;
     const resultado = state?.resultado;
     this.deckId = state?.deckId ?? '';
- 
+     
+     // Adiciona sons e Vibrações
+     this.tocarSucess();
+     this.vibrar();
+
     if (!resultado) return; // segurança: se não tiver resultado, para tudo
  
     // pega os arrays de cards certos e errados
