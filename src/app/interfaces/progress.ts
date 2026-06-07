@@ -1,7 +1,4 @@
 export interface Progress {
-     id: string;
      deckId: string;
-     totalCards: number;
-     respondedCards: number;
-     correctCards: number;
+     lastResult: number; // removi tudo que era desnecessário
 }
