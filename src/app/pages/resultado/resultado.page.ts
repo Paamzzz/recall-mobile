@@ -30,19 +30,7 @@ import { Router } from '@angular/router';
 })
 export class ResultadoPage implements OnInit {
 
-  titulo = 'Sessão concluída!';
-  subtitulo = 'Entrevista Frontend';
-
-  acertos = 8;
-  totalPerguntas = 10;
-
-  percentual = 80;
-
-  pontosFortes =
-    'Conceitos de hooks e ciclo de vida do React. Suas respostas mostraram boa base prática.';
-
-  pontosMelhoria =
-    'Aprofunde em performance e memoização. Tópicos como useMemo e useCallback costumam aparecer em entrevistas sênior.';
+  
 
   constructor(
     private router: Router
@@ -60,12 +48,10 @@ export class ResultadoPage implements OnInit {
   }
 
   calcularPercentual(): void {
-    if (this.totalPerguntas > 0) {
-      this.percentual = Math.round(
-        (this.acertos / this.totalPerguntas) * 100
-      );
+    
+      
     }
-  }
+  
 
   repetirDeck(): void {
     console.log('Repetir deck');

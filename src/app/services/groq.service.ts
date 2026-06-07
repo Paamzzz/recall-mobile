@@ -71,9 +71,8 @@ export class GroqService {
      }
 
      // Função para dicas de entrevista na tela "Feedback" ao final de seções.
-     async gerarFeedbackSessao(
+     async gerarFeedbackPositivo(
           acertos: string[],
-          erros: string[],
           nomeTrilha: string,
           descricaoTrilha: string,
           senioridade: string
@@ -83,10 +82,28 @@ export class GroqService {
           O user fez um questionário para treinar para entrevistas chamado ${nomeTrilha}, 
           na qual tem como descrição: ${descricaoTrilha} e possui o nivel de ${senioridade}. 
           Foi marcado como "acertado" as peguntas: ${acertos}.
+          
+          Diante disso, faça um feedback sobre "Você foi bom em". Faça ele de forma objetiva, coerente e didática.
+          Não se extenda demais e não repita o titulo.` 
+          //O prompt é grande para dar o feedback mais personalizavel possível ao usuário
+
+          return await this.chamarIA(prompt);
+     }
+
+     async gerarFeedbackMelhorar(
+          erros: string[],
+          nomeTrilha: string,
+          descricaoTrilha: string,
+          senioridade: string
+     ): Promise<string> {
+          const prompt = `Você é um tech recruiter profissional que tem uma ótima visão de mercado.
+          Diante disso, você deve fazer um feedback para o usuário de acordo com as informações que iremos te passar.
+          O user fez um questionário para treinar para entrevistas chamado ${nomeTrilha}, 
+          na qual tem como descrição: ${descricaoTrilha} e possui o nivel de ${senioridade}. 
           Foi marcado como "errado" as peguntas: ${erros}.
           
-          Diante disso, divida um feedback em duas seções: "Você foi bom em"  e "Para melhorar". Faça ele de forma objetiva, coerente e didática.
-          Não se extenda demais.` 
+           Diante disso, faça um feedback sobre "Pontos a melhorar". Faça ele de forma objetiva, coerente e didática.
+          Não se extenda demais e não repita o titulo.` 
           //O prompt é grande para dar o feedback mais personalizavel possível ao usuário
 
           return await this.chamarIA(prompt);
