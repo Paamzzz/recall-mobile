@@ -155,12 +155,12 @@
       <div class="progress-area">
         <div class="progress-top">
           <span>Progresso</span>
-          <span>{{ deck.lastResult }}/{{ deck.totalCards }}</span>
+          <span>{{ deck.progressoUsuario }}%</span>
         </div>
         <div class="progress-bar">
           <div
             class="progress {{ corDoCard(deck.type) }}-progress"
-            [style.width.%]="(deck.lastResult / deck.totalCards) * 100"
+            [style.width.%]="deck.progressoUsuario"
           ></div>
         </div>
       </div>

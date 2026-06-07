@@ -105,11 +105,6 @@
             <span>{{ deckAleatorio?.totalCards }}</span>
           </div>
 
-          <div class="tag-item">
-            <ion-icon name="time-outline"></ion-icon>
-            <span>Hoje</span>
-          </div>
-
           <div class="tag-pill">
             {{ deckAleatorio?.type }}
           </div>
@@ -119,11 +114,11 @@
         <div class="progress-area">
           <div class="progress-top">
             <span>Progresso</span>
-            <span>{{ deckAleatorio?.lastResult }}</span>
+            <span>{{ deckAleatorio?.progressoUsuario }}%</span>
           </div>
 
           <div class="progress-bar">
-            <div class="progress"></div>
+            <div class="progress" [style.width.%]="deckAleatorio?.progressoUsuario"></div>
           </div>
         </div>
 

@@ -135,7 +135,14 @@ async vibrar() {
     }
  
     // chama a Groq para os dois feedbacks ao mesmo tempo (Promise.all = mais rápido!)
-    try {
+  try {
+      // se não respondeu nada, não chama a Groq
+      if (this.totalAcertos === 0 && this.totalErros === 0) {
+        this.feedbackPositivo = 'Você não respondeu nenhuma pergunta.';
+        this.feedbackNegativo = 'Complete a sessão para receber um feedback personalizado!';
+        return;
+      }
+
       const [feedbackBom, feedbackMelhorar] = await Promise.all([
         this.groqService.gerarFeedbackPositivo(
           correctCards.map(c => c.question),
@@ -150,15 +157,13 @@ async vibrar() {
           deckAtual?.seniority ?? ''
         )
       ]);
- 
+
       this.feedbackPositivo = feedbackBom;
       this.feedbackNegativo = feedbackMelhorar;
     } catch (error) {
-      // se a Groq falhar, mostra mensagem padrão
       this.feedbackPositivo = 'Não foi possível gerar o feedback agora.';
       this.feedbackNegativo = 'Não foi possível gerar o feedback agora.';
     } finally {
-      // carregando termina independente de sucesso ou erro
       this.carregandoFeedback = false;
     }
   }

@@ -14,10 +14,12 @@ import {
 } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
+import { firstValueFrom } from 'rxjs';
 
-// Import de services
 import { Deck } from '../../interfaces/deck';
 import { DeckService } from 'src/app/services/deck.service';
+import { ProgressService } from 'src/app/services/progress.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 import {
   homeOutline,
@@ -31,6 +33,11 @@ import {
   logoGithub,
   logOutOutline
 } from 'ionicons/icons';
+
+// tipo auxiliar que junta o deck com o progresso do usuário
+interface DeckComProgresso extends Deck {
+  progressoUsuario: number; // valor de 0 a 100
+}
 
 @Component({
   selector: 'app-biblioteca',
@@ -51,18 +58,17 @@ import {
 })
 export class BibliotecaPage {
 
-  // objetos que utilizarei nos serviços
-  decks: Deck[] = [];
+  decks: DeckComProgresso[] = []; // agora carrega deck + progresso do usuário
   carregando = true;
 
-  // serviços na qual vou utilizar
   private deckService = inject(DeckService);
-     
+  private progressService = inject(ProgressService);
+  private authService = inject(AuthService);
+
   constructor(
     private menuCtrl: MenuController,
     private router: Router
   ) {
-
     addIcons({
       homeOutline,
       libraryOutline,
@@ -75,66 +81,75 @@ export class BibliotecaPage {
       logoGithub,
       logOutOutline
     });
-
   }
- 
-  // Toda vez que voltamos para esta tela irá carregar novamente
+
+  // toda vez que voltamos para esta tela irá carregar novamente
   ionViewWillEnter() {
-     this.carregarDeck()
+    this.carregarDeck();
   }
-//? por que não usa async?
-   carregarDeck() {
-     this.carregando = true;
 
-     //? o que é subscribe()? 
-     this.deckService.pegarDecks().subscribe({
-          next: (decks) => {
-               this.decks = decks;
-               this.carregando = false;
-          }, error: (error) => {
-               console.error('Erro ao carregar decks:', error);
-               this.carregando = false;
+  async carregarDeck() {
+    this.carregando = true;
+    try {
+      // pega o usuário logado
+      const usuario = await firstValueFrom(this.authService.usuarioAtual$);
+
+      // busca todos os decks
+      const decks = await firstValueFrom(this.deckService.pegarDecks());
+
+      // para cada deck, busca o progresso daquele usuário
+      // Promise.all faz todas as buscas ao mesmo tempo (mais rápido!)
+      this.decks = await Promise.all(
+        decks.map(async (deck) => {
+          let progressoUsuario = 0;
+
+          if (usuario) {
+            const progresso = await firstValueFrom(
+              this.progressService.pegarProgresso(deck.id, usuario.uid)
+            );
+            progressoUsuario = progresso?.finalResult ?? 0;
           }
-     });
+
+          return { ...deck, progressoUsuario };
+        })
+      );
+    } catch (error) {
+      console.error('Erro ao carregar decks:', error);
+    } finally {
+      this.carregando = false;
+    }
   }
 
-  
   abrirSessao(deck: Deck) {
-       this.router.navigate(['/sessao'], { // usar 'navigate()' faz com que não fique na url:'localhost/sessao/123644'
-          state: { deckId: deck.id } // precisamos manter na navegação o id
-     });
-}
-// Cores de tags e dos decks
-corDoCard(tipo: string): string {
-  return tipo === 'tecnico' ? 'purple' : 'orange';
-}
+    this.router.navigate(['/sessao'], {
+      state: { deckId: deck.id }
+    });
+  }
 
-corDaSenioridade(seniority: string): string {
-  const cores: Record<string, string> = {
-    junior: 'cyan',
-    pleno: 'blue',
-    senior: 'purple-status'
-  };
-  return cores[seniority] ?? 'blue';
-}
+  // cores de tags e dos decks
+  corDoCard(tipo: string): string {
+    return tipo === 'tecnico' ? 'purple' : 'orange';
+  }
+
+  corDaSenioridade(seniority: string): string {
+    const cores: Record<string, string> = {
+      junior: 'cyan',
+      pleno: 'blue',
+      senior: 'purple-status'
+    };
+    return cores[seniority] ?? 'blue';
+  }
 
   async openMenu() {
     await this.menuCtrl.open('main-menu');
   }
 
   openGithub() {
-    window.open(
-      'https://github.com/Paamzzz/recall-mobile',
-      '_blank'
-    );
+    window.open('https://github.com/Paamzzz/recall-mobile', '_blank');
   }
 
   logout() {
-    // limpa login
     localStorage.clear();
-
-    // redireciona para login
     this.router.navigate(['/login']);
   }
-
 }
