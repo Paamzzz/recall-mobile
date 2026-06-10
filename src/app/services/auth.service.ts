@@ -23,15 +23,14 @@ export class AuthService {
      async entrarComGoogle() {
           const provider = new GoogleAuthProvider();
           console.log('1 - antes do popup');
-          const resultado = await runInInjectionContext(this.injector, () =>
-               signInWithPopup(this.auth, provider)
-          );
+          
+          const resultado = await signInWithPopup(this.auth, provider); // trocar signInWithPopup para Redirect na hora de gerar apk final
 
-            console.log('2 - depois do popup', resultado.user.uid);
+          console.log('2 - depois do popup', resultado.user.uid);
 
           const uid = resultado.user.uid;
           const usuario = await firstValueFrom(this.servicoUser.pegarUserProfile(uid));
-           console.log('3 - usuario no firestore', usuario);
+          console.log('3 - usuario no firestore', usuario);
 
           if (!usuario?.uid) {
                 console.log('4 - criando perfil');
