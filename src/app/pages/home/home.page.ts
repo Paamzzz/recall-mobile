@@ -6,7 +6,7 @@ import {
   IonLabel,
   IonItem,
   IonList,
-  IonMenu
+  IonMenu,
 } from '@ionic/angular/standalone';
 
 import { MenuController } from '@ionic/angular';
@@ -26,7 +26,18 @@ import {
   logoGithub
 } from 'ionicons/icons';
 
+import { firstValueFrom } from 'rxjs';
+
 import { GroqService } from '../../services/groq.service';
+import { DeckService } from '../../services/deck.service';
+import { UserService } from '../../services/user.service';
+import { ProgressService } from '../../services/progress.service';
+import { Deck } from 'src/app/interfaces/deck';
+
+// tipo auxiliar que junta o deck com o progresso do usuário
+interface DeckComProgresso extends Deck {
+  progressoUsuario: number; // valor de 0 a 100
+}
 
 @Component({
   selector: 'app-home',
@@ -46,12 +57,17 @@ import { GroqService } from '../../services/groq.service';
 })
 export class HomePage implements OnInit {
   dica: string = 'Carregando dica...';
-  carregando: boolean = true;
+  deckAleatorio: DeckComProgresso | null = null; // agora inclui o progresso do usuário
+  carregandoDeck: boolean = true;
+  carregandoDica: boolean = true;
+  nomeUsuario = '';
 
-  // Services
-  private authService = inject(AuthService);
   private router = inject(Router);
+  private authService = inject(AuthService);
   private groqService = inject(GroqService);
+  private userService = inject(UserService);
+  private deckService = inject(DeckService);
+  private progressService = inject(ProgressService);
   private menuCtrl = inject(MenuController);
 
   constructor() {
@@ -71,15 +87,53 @@ export class HomePage implements OnInit {
     this.gerarDicaEntrevista();
   }
 
+  async ionViewWillEnter() {
+    // pega o usuário logado uma vez e usa em tudo
+    const usuario = await firstValueFrom(this.authService.usuarioAtual$);
+
+    // busca nome do usuário
+    if (usuario) {
+      const perfil = await firstValueFrom(this.userService.pegarUserProfile(usuario.uid));
+      this.nomeUsuario = perfil.name;
+    }
+
+    // busca deck aleatório + progresso do usuário naquele deck
+    await this.pegarRandomDeck(usuario?.uid ?? null);
+  }
+
+  async pegarRandomDeck(uid: string | null): Promise<void> {
+    try {
+      this.carregandoDeck = true;
+
+      // busca o deck aleatório
+      const deck = await this.deckService.pegarRandomDeck();
+
+      // busca o progresso do usuário nesse deck específico
+      let progressoUsuario = 0;
+      if (uid) {
+        const progresso = await firstValueFrom(
+          this.progressService.pegarProgresso(deck.id, uid)
+        );
+        progressoUsuario = progresso?.finalResult ?? 0;
+      }
+
+      this.deckAleatorio = { ...deck, progressoUsuario };
+    } catch (error) {
+      console.error('Erro ao carregar deck:', error);
+    } finally {
+      this.carregandoDeck = false;
+    }
+  }
+
   async gerarDicaEntrevista() {
     try {
-      this.carregando = true;
+      this.carregandoDica = true;
       this.dica = await this.groqService.gerarDicaEntrevista();
     } catch (error) {
       console.error('Erro ao carregar dica:', error);
       this.dica = 'Não foi possível carregar a dica. Tente novamente.';
     } finally {
-      this.carregando = false;
+      this.carregandoDica = false;
     }
   }
 

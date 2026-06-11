@@ -54,7 +54,7 @@
   <div class="header">
     <div>
       <p class="greeting">Bom dia 👋</p>
-      <h1>Lorem Ipsum</h1>
+      <h1>{{ nomeUsuario }}</h1>
     </div>
 
     <!-- AVATAR ABRE MENU -->
@@ -92,26 +92,21 @@
       <div class="card-content">
         <p class="small-title">DECK RECOMENDADO</p>
 
-        <h2>Entrevista Frontend</h2>
+        <h2>{{ deckAleatorio?.name }}</h2>
 
         <p class="subtitle">
-          Frontend Developer • React & TypeScript
+          {{ deckAleatorio?.description }}
         </p>
 
         <div class="tags">
 
           <div class="tag-item">
             <ion-icon name="albums-outline"></ion-icon>
-            <span>15 cards</span>
-          </div>
-
-          <div class="tag-item">
-            <ion-icon name="time-outline"></ion-icon>
-            <span>Hoje</span>
+            <span>{{ deckAleatorio?.totalCards }}</span>
           </div>
 
           <div class="tag-pill">
-            Técnica
+            {{ deckAleatorio?.type }}
           </div>
 
         </div>
@@ -119,11 +114,11 @@
         <div class="progress-area">
           <div class="progress-top">
             <span>Progresso</span>
-            <span>0/5</span>
+            <span>{{ deckAleatorio?.progressoUsuario }}%</span>
           </div>
 
           <div class="progress-bar">
-            <div class="progress"></div>
+            <div class="progress" [style.width.%]="deckAleatorio?.progressoUsuario"></div>
           </div>
         </div>
 
@@ -149,10 +144,10 @@
         </div>
 
            <!-- Loader enquanto busca -->
-      <p *ngIf="carregando">Buscando dica...</p>
+      <p *ngIf="carregandoDica">Buscando dica...</p>
 
 
-        <p *ngIf="!carregando">{{ dica }}</p>
+        <p *ngIf="!carregandoDica">{{ dica }}</p>
 
       </div>
 

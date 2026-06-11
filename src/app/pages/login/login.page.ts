@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -13,6 +13,8 @@ import { RouterModule, Router } from '@angular/router';
 
 import { addIcons } from 'ionicons';
 import { eyeOutline, eyeOffOutline } from 'ionicons/icons';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +35,11 @@ export class LoginPage {
 
   mostrarSenha = false;
 
+  email = '';
+  senha = '';
+
+  private authService = inject(AuthService);
+
   constructor(private router: Router) {
 
     addIcons({
@@ -46,15 +53,32 @@ export class LoginPage {
     this.mostrarSenha = !this.mostrarSenha;
   }
 
-  entrar() {
+  async entrar() {
+    if (!this.email || !this.senha) {
+      alert('Por favor, preencha todos os campos!');
+      return;
+    }
 
-    // futuramente validar login
-
-    this.router.navigate(['/home']);
+    try {
+      // Chama a função entrar do auth.service.ts
+      await this.authService.entrar(this.email, this.senha);
+      console.log('Login efetuado com sucesso!');
+      this.router.navigate(['/tabs/home']);
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+      alert('E-mail ou senha incorretos. Tente novamente!');
+    }
   }
 
-  loginComGoogle() {
-    alert('Login com Google');
-  }
+  async loginComGoogle() {
+    try {
+      await this.authService.entrarComGoogle();
+      this.router.navigate(['/tabs/home']);
 
+    } catch (error) {
+      console.error('Erro no login com Google:', error);
+      alert('Erro ao tentar entrar com o Google.');
+
+    }
+  }
 }

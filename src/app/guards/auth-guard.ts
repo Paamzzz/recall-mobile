@@ -9,7 +9,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
      return authService.usuarioAtual$.pipe(
           map(usuario => {
-               if (usuarioAtual) {
+               if (usuario) {
                     return true;
                } else {
                     router.navigate(['/splash']);

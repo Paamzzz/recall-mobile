@@ -70,3 +70,11 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Artefatos do Android e Gradle
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties
+.idea/
+*.apk

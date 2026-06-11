@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "249600256129",
+    "project_id": "projetoflashcards3",
+    "storage_bucket": "projetoflashcards3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249600256129:android:84dcaf39d2075692f44580",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249600256129-4rjamemlrnugc5qm8897iibp86bt4sf3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "io.ionic.starter",
+            "certificate_hash": "253e950ead4685516a90bc47e1e86da753eccc3f"
+          }
+        },
+        {
+          "client_id": "249600256129-9pk6muq1udual25ob9i939ujf3fo1r19.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1j3eHRG8BHSImTtaIXp6DpFfJ09NUHYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249600256129-9pk6muq1udual25ob9i939ujf3fo1r19.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
