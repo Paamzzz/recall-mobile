@@ -88,9 +88,9 @@ ionic capacitor run android
 
 | Nome | Papel | GitHub |
 | :--- | :--- | :--- |
-| **Pamela Amancio Goulart** | Integração, UX & Arquitetura de Serviços | [@Paamzzz](https://github.com/Paamzzz) |
-| **João Pedro Rangel** | Backend & Firebase | [@7JPRBM7](https://github.com/7JPRBM7) |
-| **Joyce do Vale Silva** | Frontend & Interface | [@J01C3](https://github.com/J01C3) |
+| **Pamela Amancio Goulart** | Integração, UX & Arquitetura de Serviços | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/Paamzzz) |
+| **João Pedro Rangel** | Backend & Firebase | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/7JPRBM7) |
+| **Joyce do Vale Silva** | Frontend & Interface | [![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/J01C3) |
 <br/>
 
 <div align="center">
