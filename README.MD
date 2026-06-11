@@ -86,31 +86,11 @@ ionic capacitor run android
 
 ## 👩‍💻 Time
 
-### Pamela Amancio Goulart
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/Paamzzz)
-
-**Integração, UX & Arquitetura de Serviços**
-
-Responsável pela integração entre todas as camadas do app. Desenvolveu os serviços Angular que conectam o frontend ao Firebase, configurou os ambientes de desenvolvimento e produção, implementou a chamada à Open Trivia API com mapeamento dos dados para o modelo do app, e integrou a API de IA (Groq) para geração de feedback personalizado ao final de cada sessão de estudos. Além disso, criou o protótipo no Figma e implementou os recursos de experiência do usuário — animações, feedback tátil por vibração e efeitos sonoros.
-
----
-
-### João Pedro Rangel
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/7JPRBM7)
-
-**Backend & Infraestrutura de Dados**
-
-Responsável por toda a infraestrutura de dados do app. Configurou o Firebase, implementou o fluxo de autenticação (cadastro, login e logout), estruturou o Cloud Firestore, modelou as coleções de dados e criou o banco de cards pré-prontos disponível aos usuários desde o primeiro acesso.
-
----
-
-### Joyce do Vale Silva
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white)](https://github.com/J01C3)
-
-**Frontend & Interface**
-
-Responsável pelo desenvolvimento das telas do aplicativo, implementando fielmente o protótipo definido no Figma. Garantiu consistência visual e coerência de componentes ao longo de todas as telas, traduzindo o design em interfaces funcionais com Ionic e Angular.
-
+| Nome | Papel | GitHub |
+| :--- | :--- | :--- |
+| **Pamela Amancio Goulart** | Integração, UX & Arquitetura de Serviços | [@Paamzzz](https://github.com/Paamzzz) |
+| **João Pedro Rangel** | Backend & Firebase | [@7JPRBM7](https://github.com/7JPRBM7) |
+| **Joyce do Vale Silva** | Frontend & Interface | [@J01C3](https://github.com/J01C3) |
 <br/>
 
 <div align="center">
