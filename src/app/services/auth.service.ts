@@ -1,5 +1,5 @@
 import { Injectable, inject, runInInjectionContext, Injector } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, signOut, user, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signOut, user, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, signInWithRedirect } from '@angular/fire/auth';
 import { firstValueFrom } from 'rxjs'; // pega apenas o primeiro valor do Observable e transforma em um Promise
 import { UserService } from '../services/user.service'
 // inject() é a funçao para injetar serviços
