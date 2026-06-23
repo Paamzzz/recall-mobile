@@ -15,9 +15,10 @@
   <img src="https://img.shields.io/badge/Postman-ef5b25?style=for-the-badge&logo=postman&logoColor=white" alt="Postman" />
   <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma" />
 
+<br>
    <img 
     src="./src/assets/img/recall-demo.gif" 
-    width="70%" 
+    width="40%" 
     alt="Recall Banner"
   />
 </div>
