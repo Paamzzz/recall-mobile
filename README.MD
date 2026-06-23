@@ -16,13 +16,14 @@
   <img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma" />
 </div>
 
+<div align="center">
 <br/>
-   <img 
-    src="./src/assets/img/recall-demo.gif" 
-    width="30%" 
-    alt="Recall Banner"
-  />
-
+     <img 
+      src="./src/assets/img/recall-demo.gif" 
+      width="30%" 
+      alt="Recall Banner"
+    />
+</div>
 
 <br/>
 
