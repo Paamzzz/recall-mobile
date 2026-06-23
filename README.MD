@@ -17,7 +17,7 @@
 
    <img 
     src="./src/assets/img/recall-demo.gif" 
-    width="100%" 
+    width="70%" 
     alt="Recall Banner"
   />
 </div>
